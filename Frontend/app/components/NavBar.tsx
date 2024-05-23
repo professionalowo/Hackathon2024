@@ -7,7 +7,7 @@ export type Chat = { timestamp: number, messages: Message[] }
 export type NavBarProps = { chats: Array<Chat> }
 export function NavBar({ chats }: NavBarProps) {
     const [isOpen, setIsOpen] = useState(false)
-    return <nav className={cn("bg-slate-800 rounded-r h-full flex flex-row justify-start align-top", { "w-1/4": isOpen })}>
+    return <nav className={cn("bg-slate-800 rounded-r h-full flex flex-row justify-start align-top", { "w-1/6": isOpen })}>
         <div className="flex flex-col h-full w-full gap-2 py-4">
             {isOpen && chats.map(chat => (
                 <NavLink unstable_viewTransition key={chat.timestamp} className="hover:bg-slate-700 cursor-pointer rounded py-2 px-1" to={`/chat/${chat.timestamp}`}>
@@ -15,6 +15,6 @@ export function NavBar({ chats }: NavBarProps) {
                 </NavLink>)
             )}
         </div>
-        <button className="text-left p-1" onClick={() => setIsOpen(o => !o)}>{!isOpen ? <p>&rarr;</p> : <p>&larr;</p>}</button>
+        <button className="text-left p-1 text-xl" onClick={() => setIsOpen(o => !o)}>{!isOpen ? <p>&rarr;</p> : <p>&larr;</p>}</button>
     </nav>
 }
