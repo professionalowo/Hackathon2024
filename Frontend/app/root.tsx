@@ -7,10 +7,14 @@ import {
 } from "@remix-run/react";
 
 import stylesheet from "./css/main.css?url";
+import icon from "./assets/chat-left-dots.svg";
 import { LinksFunction } from "@remix-run/node";
 
+
+
 export const links: LinksFunction = () => [
-  { rel: "stylesheet", href: stylesheet }
+  { rel: "stylesheet", href: stylesheet },
+  { rel: "icon", type: "image/svg", href: icon }
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
