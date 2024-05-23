@@ -1,6 +1,7 @@
 import { ActionFunctionArgs, LoaderFunctionArgs } from "@remix-run/node";
 import { redirect, useLoaderData } from "@remix-run/react";
 import { addMessageToChat, getChats } from "~/.server/chats";
+import {Message} from "~/components/Message";
 
 export function loader({ params }: LoaderFunctionArgs) {
     const id = Number(params.id);
@@ -22,9 +23,9 @@ export default function ChatInner() {
     const { chat } = useLoaderData<typeof loader>();
     return (
         <div>
-            <div>
+            <div className="flex flex-col">
                 {chat?.messages.map(
-                    ({ message, ai, timestamp }, index) => <p key={index}>{message}</p>
+                    (message, index) => <Message key={index} message={message}/>
                 )}
             </div>
         </div>
