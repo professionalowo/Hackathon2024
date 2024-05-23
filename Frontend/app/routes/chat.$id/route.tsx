@@ -31,7 +31,7 @@ export default function ChatInner() {
         <ChatBox>
             <div className="flex flex-col gap-5 p-5">
                 {chat?.messages.map(
-                    (message, index) => <Message key={index} message={message} />
+                    (message) => <Message key={message.message.substring(0, Math.min(10, Math.ceil(message.message.length / 2)))} message={message} />
                 )}
             </div>
             <span id="end" ref={end}></span>
