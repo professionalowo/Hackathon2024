@@ -18,7 +18,7 @@ export default function Index() {
                 see how fast the hot module reloading is!
             </p>
             <div className="nav-link-container">
-                <NavLink className="px-5 py-3 bg-purple-800 hover:bg-purple-900 rounded-md" to={"/chat"}>Start Chatting</NavLink>
+                <NavLink unstable_viewTransition className="px-5 py-3 bg-purple-800 hover:bg-purple-900 rounded-md" to={"/chat"}>Start Chatting</NavLink>
             </div>
         </div>
     );

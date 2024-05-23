@@ -2,6 +2,7 @@ import { ActionFunctionArgs, LoaderFunctionArgs } from "@remix-run/node";
 import { ScrollRestoration, redirect, useLoaderData } from "@remix-run/react";
 import { useEffect, useRef } from "react";
 import { addMessageToChat, getChats } from "~/.server/chats";
+import { ChatBox } from "~/components/ChatBox";
 import { Message } from "~/components/Message";
 
 export function loader({ params }: LoaderFunctionArgs) {
@@ -27,14 +28,14 @@ export default function ChatInner() {
         end.current?.scrollIntoView();
     }, [chat]);
     return (
-        <div className="overflow-auto">
-            <div className="flex flex-col">
+        <ChatBox>
+            <div className="flex flex-col gap-5 p-5">
                 {chat?.messages.map(
                     (message, index) => <Message key={index} message={message} />
                 )}
             </div>
             <span id="end" ref={end}></span>
             <ScrollRestoration />
-        </div>
+        </ChatBox>
     )
 }
