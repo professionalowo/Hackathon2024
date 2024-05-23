@@ -4,8 +4,8 @@ import { NavLink } from "@remix-run/react";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "Chat with AI" },
-    { name: "description", content: "Welcome to the AI Chat!" },
+    { title: "Chat with AGV RescueBot" },
+    { name: "description", content: "Welcome to AGV RescueBot!" },
   ];
 };
 
