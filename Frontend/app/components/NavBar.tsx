@@ -1,6 +1,7 @@
 import { NavLink } from "@remix-run/react"
 
-export type Chat = {timestamp:number,messages:string[]}
+export type Message = { message: string, ai: boolean, timestamp: number }
+export type Chat = { timestamp: number, messages: Message[] }
 export type NavBarProps = { chats: Array<Chat> }
 export function NavBar({ chats }: NavBarProps) {
     return <nav className="w-1/6 bg-slate-800 rounded-r h-full flex flex-col justify-start align-top">
