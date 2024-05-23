@@ -19,6 +19,7 @@ export default function Chat() {
             <NavBar chats={chats} />
             <div className="w-full">
                 <Outlet />
+                <input placeholder="Enter your Message" name="prompt" className="bg-slate-600 text-slate-100 rounded"/>
             </div>
         </div>
     )
