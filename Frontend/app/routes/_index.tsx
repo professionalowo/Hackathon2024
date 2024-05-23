@@ -17,7 +17,7 @@ export default function Index() {
         This is a new Remix app. You can start editing this file immediately to
         see how fast the hot module reloading is!
       </p>
-      <NavLink className="px-5 py-3 bg-purple-800 hover:bg-purple-900 rounded-md" to={"/chat"}>Start Chatting</NavLink>
+      <NavLink unstable_viewTransition className="px-5 py-3 bg-purple-800 hover:bg-purple-900 rounded-md" to={"/chat"}>Start Chatting</NavLink>
     </div>
   );
 }

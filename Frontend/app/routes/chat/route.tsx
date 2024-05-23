@@ -1,4 +1,4 @@
-import { Outlet, redirect, useLoaderData } from "@remix-run/react";
+import { Form, Outlet, redirect, useLoaderData } from "@remix-run/react";
 import { type Chat, NavBar } from "~/components/NavBar";
 import { ActionFunctionArgs } from "@remix-run/node";
 import { addChats, getChats } from "~/.server/chats";
@@ -32,8 +32,10 @@ export default function Chat() {
         <div className="flex flex-row w-full h-full">
             <NavBar chats={chats} />
             <div className="flex flex-col w-full">
-                <Outlet />
-                <div className="flex justify-center items-end w-full h-full p-4">
+                <div className="grow w-full g-full overflow-auto">
+                    <Outlet />
+                </div>
+                <div className="flex justify-center items-end w-full h-fit p-4">
                     <form className="flex w-full justify-center" method="post" autoComplete="off">
                         <input
                             placeholder="Enter your Message"
