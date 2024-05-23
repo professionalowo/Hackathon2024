@@ -27,7 +27,7 @@ export default function ChatInner() {
         end.current?.scrollIntoView();
     }, [chat]);
     return (
-        <div className="overflow-auto grow">
+        <div className="overflow-auto">
             <div className="flex flex-col">
                 {chat?.messages.map(
                     (message, index) => <Message key={index} message={message} />
