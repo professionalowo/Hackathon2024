@@ -1,7 +1,6 @@
 import type { MetaFunction } from "@remix-run/node";
 import { NavLink } from "@remix-run/react";
 
-
 export const meta: MetaFunction = () => {
   return [
     { title: "Chat with AGV RescueBot" },
@@ -17,7 +16,7 @@ export default function Index() {
                 Your AGV error-fixing expert. Trust us for swift solutions and seamless operations!
             </p>
             <div className="nav-link-container">
-                <NavLink className="px-5 py-3 bg-purple-800 hover:bg-purple-900 rounded-md" to={"/chat"}>Start Chatting</NavLink>
+                <NavLink className="px-5 py-3 bg-purple-800 hover:bg-purple-900 rounded-lg" to={"/chat"}>Start Chatting</NavLink>
             </div>
         </div>
     );

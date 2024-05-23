@@ -1,4 +1,4 @@
-import { Form, Outlet, redirect, useLoaderData } from "@remix-run/react";
+import { Outlet, redirect, useLoaderData } from "@remix-run/react";
 import { type Chat, NavBar } from "~/components/NavBar";
 import { ActionFunctionArgs } from "@remix-run/node";
 import { addChats, getChats } from "~/.server/chats";
