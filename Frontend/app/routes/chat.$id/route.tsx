@@ -22,7 +22,7 @@ export async function action({ request, params }: ActionFunctionArgs) {
 export default function ChatInner() {
     const { chat } = useLoaderData<typeof loader>();
     return (
-        <div>
+        <div className="overflow-auto grow">
             <div className="flex flex-col">
                 {chat?.messages.map(
                     (message, index) => <Message key={index} message={message}/>
