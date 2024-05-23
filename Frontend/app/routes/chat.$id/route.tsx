@@ -1,7 +1,8 @@
 import { ActionFunctionArgs, LoaderFunctionArgs } from "@remix-run/node";
-import { redirect, useLoaderData } from "@remix-run/react";
+import { ScrollRestoration, redirect, useLoaderData } from "@remix-run/react";
+import { useEffect, useRef } from "react";
 import { addMessageToChat, getChats } from "~/.server/chats";
-import {Message} from "~/components/Message";
+import { Message } from "~/components/Message";
 
 export function loader({ params }: LoaderFunctionArgs) {
     const id = Number(params.id);
@@ -21,13 +22,19 @@ export async function action({ request, params }: ActionFunctionArgs) {
 
 export default function ChatInner() {
     const { chat } = useLoaderData<typeof loader>();
+    const end = useRef<HTMLSpanElement>(null);
+    useEffect(() => {
+        end.current?.scrollIntoView();
+    }, [chat]);
     return (
         <div className="overflow-auto grow">
             <div className="flex flex-col">
                 {chat?.messages.map(
-                    (message, index) => <Message key={index} message={message}/>
+                    (message, index) => <Message key={index} message={message} />
                 )}
             </div>
+            <span id="end" ref={end}></span>
+            <ScrollRestoration />
         </div>
     )
 }
