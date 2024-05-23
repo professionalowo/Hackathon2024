@@ -9,6 +9,7 @@ import {
 import stylesheet from "./css/main.css?url";
 import icon from "./assets/chat-left-dots.svg";
 import { LinksFunction } from "@remix-run/node";
+import { AnimatePresence } from "framer-motion";
 
 
 
@@ -27,7 +28,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body className="h-screen">
-        {children}
+        <AnimatePresence mode="wait">
+          {children}
+        </AnimatePresence>
         <ScrollRestoration />
         <Scripts />
       </body>

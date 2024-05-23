@@ -1,6 +1,7 @@
 import { Outlet, useLoaderData } from "@remix-run/react";
 import { type Chat, NavBar } from "~/components/NavBar";
 import { getChats } from "~/.server/chats";
+import { motion } from "framer-motion";
 
 export const meta = () => {
     return [
@@ -17,11 +18,15 @@ export function loader() {
 export default function Chat() {
     const { chats } = useLoaderData<typeof loader>();
     return (
-        <div className="flex flex-row w-full h-full">
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="flex flex-row w-full h-full">
             <NavBar chats={chats} />
             <div className="flex flex-col w-full">
                 <Outlet />
             </div>
-        </div>
+        </motion.div>
     )
 }
