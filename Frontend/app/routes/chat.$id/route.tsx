@@ -1,17 +1,32 @@
-import { LoaderFunctionArgs } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import {ActionFunctionArgs, LoaderFunctionArgs} from "@remix-run/node";
+import {redirect, useActionData, useLoaderData} from "@remix-run/react";
+import {addMessageToChat, getChats} from "~/.server/chats";
 
 export function loader({ params }: LoaderFunctionArgs) {
-    return { id: params.id };
+    const id = Number(params.id);
+    if(!id) throw redirect("/chat");
+    const chat = getChats().find(chat=>chat.timestamp===id);
+    return { chat };
+}
+
+export async function action({request,params}:ActionFunctionArgs){
+    const data = await request.formData();
+    const prompt = data.get("prompt") as string;
+    const id = Number(params.id);
+    const chat = getChats().find(chat=>chat.timestamp===id)!;
+    addMessageToChat(chat,prompt);
+    return {prompt};
 }
 
 export default function ChatInner() {
-    const data = useLoaderData<typeof loader>()
+    const {chat} = useLoaderData<typeof loader>();
     return (
         <div>
-            <nav>
-                {data.id ?? "No id"}
-            </nav>
+            <div>
+                {chat?.messages.map(
+                    (message,index)=> <p key={index}>{message}</p>
+                )}
+            </div>
         </div>
     )
 }
