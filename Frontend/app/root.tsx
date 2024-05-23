@@ -6,6 +6,13 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 
+import stylesheet from "./css/main.css?url";
+import { LinksFunction } from "@remix-run/node";
+
+export const links: LinksFunction = () => [
+  { rel: "stylesheet", href: stylesheet }
+];
+
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
