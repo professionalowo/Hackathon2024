@@ -10,6 +10,7 @@ import stylesheet from "./css/main.css?url";
 import icon from "./assets/chat-left-dots.svg";
 import { LinksFunction } from "@remix-run/node";
 import { AnimatePresence } from "framer-motion";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 
 
@@ -17,6 +18,8 @@ export const links: LinksFunction = () => [
   { rel: "stylesheet", href: stylesheet },
   { rel: "icon", type: "image/svg", href: icon }
 ];
+
+const queryClient = new QueryClient();
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -28,8 +31,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body className="h-screen">
+
         <AnimatePresence mode="wait">
-          {children}
+          <QueryClientProvider client={queryClient}>
+            {children}
+          </QueryClientProvider>
         </AnimatePresence>
         <ScrollRestoration />
         <Scripts />
