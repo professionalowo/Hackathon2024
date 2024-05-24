@@ -27,12 +27,13 @@ export async function action({ request, params }: ActionFunctionArgs) {
     const prompt = data.get("prompt") as string;
     const id = Number(params.id);
     const chat = await getChatById(id);
-    await messagePromptFlow(prompt, chat!);
-    return new Response(null, { status: 200 });
+    const { sources } = await messagePromptFlow(prompt, chat!);
+    return { sources };
 }
 
 export default function ChatInner() {
     const { chat } = useLoaderData<typeof loader>();
+    const { sources } = useLoaderData<typeof action>();
     const end = useRef<HTMLSpanElement>(null);
     const { isFetching } = useContext(fetchingContext)!;
     const { optimisticMessage } = useContext(optimisticMessageContext)!;
@@ -49,7 +50,8 @@ export default function ChatInner() {
                     {optimisticMessage && <Message message={optimisticMessage!} />}
                     <div className="bg-orange rounded-3xl p-3 w-fit"><TypingDots /></div>
                 </>)}
-                {chat?.messages.length === 0 && <InitialGreeting className={"flex flex-col items-center justify-center h-full grow w-full"} />}
+                {sources && <abbr className="text-xl" title={(sources??["what"]).map(s => s).join("\n")}>&ldquo;</abbr>}
+                {chat?.messages.length === 0 && !isFetching && <InitialGreeting className={"flex flex-col items-center justify-center h-full grow w-full"} />}
             </div>
             <span id="end" ref={end}></span>
             <ScrollRestoration />

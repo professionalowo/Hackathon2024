@@ -47,12 +47,11 @@ export async function messagePromptFlow(message: string, { id, summary }: Chat) 
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [messageInserted, answer] = await Promise.all([addMessagePromise, answerPromise]);
-
     const addAiMessagePromise = addMessageToChat({ message: answer.reply, ai: true, timestamp: Date.now(), chatId: id });
     const updateChatPromise = updateChatSummary(id, answer.summary);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [aiMessage, updatedChat] = await Promise.all([addAiMessagePromise, updateChatPromise]);
-    return aiMessage;
+    return answer;
 }
 
 export const api = new APIClient<Prompt, AIResponse>({ baseUrl: "/query" });
