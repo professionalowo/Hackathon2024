@@ -46,14 +46,9 @@ export const NavBarSkeleton = ({ children }: { children?: ReactNode }) => {
     }, [isOpen])
 
     const containerVariants = {
-        open: { width: "16.66%", transition: { type: "spring", stiffness: 100, damping: 20, duration: 0.5 } },
-        closed: { width: "6rem", transition: { type: "spring", stiffness: 100, damping: 20 } },
+        open: { width: "16.66%", transition: { type: "tween", stiffness: 100, damping: 20 } },
+        closed: { width: "7rem", transition: { type: "tween", stiffness: 100, damping: 20 } },
     } satisfies Variants;
-
-    const itemVariants = {
-        open: { opacity: 1, x: 0, display: "", transition: { duration: 0.2 } },
-        closed: { opacity: 0, x: -20, transitionEnd: { display: "none" } },
-    };
 
     return (
         <motion.nav
@@ -62,13 +57,13 @@ export const NavBarSkeleton = ({ children }: { children?: ReactNode }) => {
             animate={isOpen ? "open" : "closed"}
             className="bg-slate-800 h-full flex flex-col items-start pt-10"
         >
-            <div className="self-start pl-8 mb-4">
+            <div className="self-start pl-9 mb-4">
                 <button className="text-xl" onClick={() => setIsOpen(o => !o)}>
                     <img alt="menu" src={menuIcon} />
                 </button>
             </div>
-            <motion.div className="px-5 pb-4 w-full">
-                <div className="flex items-center rounded-full bg-purple-800 text-white py-2 hover:bg-purple-900">
+            <div className="px-5 pb-4 w-full">
+                <div className="flex items-center rounded-full bg-purple-800 text-white p-1 hover:bg-purple-900 overflow-clip">
                     <Link
                         to={{
                             pathname: "/chat/new",
@@ -81,13 +76,13 @@ export const NavBarSkeleton = ({ children }: { children?: ReactNode }) => {
                     >
                         <img alt="add" src={addIcon} className="m-3" style={{ minWidth: "32px" }} />
                         {isOpen && (
-                            <motion.span variants={itemVariants} animate={isOpen ? "open" : "closed"} className="ml-2">
+                            <span className="text-nowrap">
                                 New Chat
-                            </motion.span>
+                            </span>
                         )}
                     </Link>
                 </div>
-            </motion.div>
+            </div>
             <div className="overflow-auto flex flex-col gap-3 w-full">
                 {isOpen && children}
             </div>
