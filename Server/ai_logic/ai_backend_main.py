@@ -1,4 +1,6 @@
 # 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
+import aiohttp
+import aiofiles
 import requests
 import json
 import os
@@ -19,7 +21,7 @@ def get_embedding(text):
     # text = text.replace("\n", " ")
     # return client.embeddings.create(input=[text], model=model).data[0].embedding
     return model.encode(text)
-def query_function(query, return_val=2, get_data=False):
+async def query_function(query, return_val=2, get_data=False):
     file_list = os.listdir('embeddings')
     query_embedding = get_embedding(query)
 
@@ -27,8 +29,8 @@ def query_function(query, return_val=2, get_data=False):
     similarities = []
 
     for file in file_list:
-        with open(f'embeddings/{file}', 'rb') as f:
-            doc_embedding = pickle.load(f)
+        async with aiofiles.open(f'embeddings/{file}', 'rb') as f:
+            doc_embedding = pickle.loads(await f.read())
 
         similarity = 1 - spatial.distance.cosine(query_embedding, doc_embedding)
 
@@ -45,14 +47,14 @@ def query_function(query, return_val=2, get_data=False):
             # if file title consists of 'Title' then it pkl should be replaced with txt
             if 'Title_' in file:
                 file = file.replace('.pkl', '.txt')
-                with open(f"OtherChapters/{file}", 'r', encoding='utf-8') as f:
-                    doc_text = f.read()
+                async with aiofiles.open(f"OtherChapters/{file}", 'r', encoding='utf-8') as f:
+                    doc_text = await f.read()
                     content = doc_text
                     resource_list.append(file.replace('.txt', '').replace('Title_', ''))
             else:
                 file = file.replace(".pkl", ".json")
-                with open(f"Commands/{file}", 'r') as f:
-                    data = json.load(f)
+                async with aiofiles.open(f"Commands/{file}", 'r') as f:
+                    data = json.load(await f.read())
                     content = "Title: " + data['title'] + ", " \
                               + "Syntax: " + data['syntax'] + ", " \
                               + "Usage Considerations: " + data['usage_considerations'].replace('\n', ' ') + ", " \
@@ -85,18 +87,17 @@ headers = {
 }
 
 
-def ask_q(text, temp=0.6):
+async def ask_q(text, temp=0.6):
     data = {
         "messages": [{"role": "user", "content": f"{text}"}],
         "model": "mixtral-8x7b-32768"
     }
-    response = requests.post(url, headers=headers, data=json.dumps(data))
+    async with aiohttp.ClientSession() as session:
+        async with session.post(url, headers=headers, data=json.dumps(data)) as response:
+            return await response.json()
 
-    # Print the response
-    return response.json()['choices'][0]['message']['content']
 
-
-def user_input(text, previous_summary=None):
+async def user_input(text, previous_summary=None):
     system_prompt = """You are known as AGC Doctor, you help users to to understand solve issues related to  AGV and ARCL.
     ARCL Overview and Error Handling Guide
     This summary provides essential information about the Adept Robot Control Language (ARCL) for you as an AI assistant in diagnosing and resolving issues related to Automated Guided Vehicles (AGVs).
@@ -175,57 +176,48 @@ def user_input(text, previous_summary=None):
     <summary> A summary of the context of chat / conversation between the user and you (assistant)</summary>
     <reply> Your reply to the user with the required details (Make it clear use step by step explanation if necessary)</reply>"""
     # PART ONE, first loop of code, get details from embedding
-    system_file_search, source_list_1 = query_function(text, get_data=True)
-    # print(system_file_search)
+    system_file_search, source_list_1 = await query_function(text, get_data=True)
     text = "USER'S QUERY/MESSAGE: " + text
     if previous_summary:
         previous_summary = "This is what the previous conversation with the user was about: " + previous_summary
         system_prompt = system_prompt + previous_summary
     system_prompt_ = system_prompt + verification_prompt + text + system_file_search
-    first_output = ask_q(system_prompt_)
-    # print("--------------")
-    # print(f"Fist output: {first_output}")
-    # print("--------------")
+    first_output = await ask_q(system_prompt_)
     # i´take the first output and store the <summary> to summary variable and extract
     # the <query_To_system> to text variable
     # then i´ll ask the system again with the updated system_prompt
+    first_output = first_output['choices'][0]['message']['content']
     summary = first_output.split('<summary>')[1].split('</summary>')[0]
     second_system_query = first_output.split('<query_To_system>')[1].split('</query_To_system>')[0]
     if second_system_query != "" or second_system_query != " ":
-        second_system_File_search, source_list_2 = query_function(second_system_query, get_data=True)
+        second_system_File_search, source_list_2 = await query_function(second_system_query, get_data=True)
         system_prompt_ = system_prompt_ + user_output_prompt + summary + second_system_File_search + text
         source_list_1.extend(source_list_2)
     else:
         system_prompt_ = system_prompt_ + user_output_prompt + summary + text
-    final_output = ask_q(system_prompt_)
+    final_output = await ask_q(system_prompt_)
+    final_output = final_output['choices'][0]['message']['content']
     # the final output consists of <summary> and <reply>, we need a dictionary with keys summary and reply
     summary = final_output.split('<summary>')[1].split('</summary>')[0]
     reply = final_output.split('<reply>')[1].split('</reply>')[0]
 
     return {"summary": summary, "reply": reply, "sources": set(source_list_1)}
 
-def user_TEST(text, previous_message):
-    print("User: ", text)
-    print("System: ", user_input(text, previous_message))
-    print("------------------------------------------------------")
-    return text + " " + "COMPLETED"
 
 
 from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-
 @app.route('/query', methods=['POST'])
-def query():
+async def query():
     data = request.get_json()
     text = data.get('text')
     previous_summary = data.get('previous_summary', None)
-    result = user_TEST(text, previous_summary)
-    if isinstance(result, set):
-        result = list(result)
+    result = await user_input(text, previous_summary)
+    if isinstance(result['sources'], set):
+        result['sources'] = list(result['sources'])
     return jsonify(result)
-
 
 if __name__ == '__main__':
     app.run(port=5000, debug=True)
