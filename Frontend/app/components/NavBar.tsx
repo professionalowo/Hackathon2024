@@ -1,10 +1,9 @@
 import { Await, Link, NavLink, useSearchParams } from "@remix-run/react";
 import { ReactNode, Suspense, useEffect, useState } from "react";
-import { cn } from "~/lib/cn";
 import addIcon from "../assets/plus-lg.svg?url";
 import menuIcon from "../assets/list.svg?url";
 import { ChatWithMessages } from "~/.server/chats";
-import {motion, Variants} from "framer-motion";
+import { motion, Variants } from "framer-motion";
 
 export type NavBarProps = { chats: Array<ChatWithMessages> | Promise<Array<ChatWithMessages>> };
 
@@ -40,19 +39,19 @@ function MessageSkeleton() {
 
 export const NavBarSkeleton = ({ children }: { children?: ReactNode }) => {
     const [searchParams, setSearchParams] = useSearchParams();
-    const [isOpen, setIsOpen] = useState(searchParams.get("open") ?? false as boolean);
+    const [isOpen, setIsOpen] = useState(Boolean(searchParams.get("open") ?? "false"));
 
     useEffect(() => {
         setSearchParams(prev => ({ open: isOpen, ...prev }));
     }, [isOpen])
 
     const containerVariants = {
-        open: { width: "16.66%", transition: { type: "spring", stiffness: 100,damping:20,duration:0.5 } },
-        closed: { width: "6rem", transition: { type: "spring", stiffness: 100,damping:20 } },
+        open: { width: "16.66%", transition: { type: "spring", stiffness: 100, damping: 20, duration: 0.5 } },
+        closed: { width: "6rem", transition: { type: "spring", stiffness: 100, damping: 20 } },
     } satisfies Variants;
 
     const itemVariants = {
-        open: { opacity: 1, x: 0, display: "",transition:{duration: 0.2} },
+        open: { opacity: 1, x: 0, display: "", transition: { duration: 0.2 } },
         closed: { opacity: 0, x: -20, transitionEnd: { display: "none" } },
     };
 
