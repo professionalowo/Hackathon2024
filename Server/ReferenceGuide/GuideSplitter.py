@@ -54,7 +54,9 @@ def find_command_reference_section(doc):
     filtered_chapters.append(chapters[end_index])
     return filtered_chapters
 
-
+def extract_chapter_text_last(doc,chapter):
+    last_chapter = doc.get_toc()[-1]
+    return extract_chapter_text(doc,chapter, last_chapter)
 def extract_chapter_text(doc, chapter, nextchapter):
     start_page = chapter[2]  # Adjust page number to 0-based index
     end_page = nextchapter[2]  # End page (inclusive)
@@ -140,6 +142,24 @@ def extract_command_to_json(doc):
             json.dump(json_data, json_file, indent=4)
 
 
+def extract_chapter_information(doc):
+    toc_chapters = doc.get_toc()
+    command_reference_chapters = find_command_reference_section(doc)
+    # Filter out the chapters in command_reference_chapters from toc_chapters
+    other_chapters = [x for x in toc_chapters if x not in command_reference_chapters if x[0] != 3]
+    #append the last chapter from the cutaway
+    other_chapters.append(command_reference_chapters[-1])
+
+    for i in range(0, len(other_chapters)):
+        if i < len(other_chapters) - 1:
+            chapter_text = extract_chapter_text(doc, other_chapters[i], other_chapters[i + 1])
+        else:
+            chapter_text = extract_chapter_text_last(doc, other_chapters[i])
+        file_title = re.sub(r'[<>:"/\\|?*]', '_', f'Title_{other_chapters[i][1]} Level_{other_chapters[i][0]}.txt')
+        chapter_filename = os.path.join('OtherChapters',file_title )
+        # Save the chapter text to the file
+        with open(chapter_filename, 'w', encoding='utf-8') as file:
+            file.write(chapter_text)
 
 
 if __name__ == "__main__":
@@ -147,6 +167,7 @@ if __name__ == "__main__":
     try:
         doc = pymupdf.open("../rawFiles/ARCL_RG.pdf")  # open a document
         extract_command_to_json(doc)
+        extract_chapter_information(doc)
         doc.close()
     except FileNotFoundError:
         print("File not found. Please check the file path and try again.")
