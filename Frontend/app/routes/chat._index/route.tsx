@@ -7,7 +7,9 @@ import {InitialGreeting} from "~/components/InitialGreeting";
 
 export async function action({ request }: ActionFunctionArgs) {
     const data = await request.formData();
-    const message = data.get("prompt")! as string;
+    let message = data.get("prompt")! as string;
+    const simple = data.get("simple") as string | undefined;
+    if(simple) message += " use simple and concise language"
     const newChat: ChatInsert = { timestamp: Date.now() };
     const addedChat = await addChats(newChat);
     await messagePromptFlow(message, addedChat[0]);
