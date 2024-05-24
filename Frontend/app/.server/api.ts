@@ -4,13 +4,14 @@ import { z } from "zod";
 type APIClientProps = { baseUrl: `/${string}`, secure?: boolean };
 
 const PromptSchema = z.object({
-    summary: z.string().nullable(),
-    question: z.string().min(1),
+    previous_summary: z.string().nullable(),
+    text: z.string().min(1),
 });
 
 const AIResponseSchema = z.object({
     summary: z.string().min(1),
     reply: z.string().min(1),
+    sources: z.array(z.string()),
 })
 type AIResponse = z.infer<typeof AIResponseSchema>;
 type Prompt = z.infer<typeof PromptSchema>;
@@ -39,7 +40,7 @@ export async function messagePromptFlow(message: string, { id, summary }: Chat) 
     const addMessagePromise = addMessageToChat({ message, ai: false, timestamp: Date.now(), chatId: id });
     //const prompt = PromptSchema.parse({ question: message, summary: summary ?? null });
     //const answerPromise = api.prompt(prompt);
-    const answerPromise = new Promise<AIResponse>((resolve) => resolve({ summary: summary ?? "", reply: "This is a test response" }));
+    const answerPromise = new Promise<AIResponse>((resolve) => resolve({ sources: [], summary: summary ?? "", reply: "This is a test response" }));
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [messageInserted, answer] = await Promise.all([addMessagePromise, answerPromise]);
@@ -51,4 +52,4 @@ export async function messagePromptFlow(message: string, { id, summary }: Chat) 
     return aiMessage;
 }
 
-export const api = new APIClient<Prompt, AIResponse>({ baseUrl: "/api" });
+export const api = new APIClient<Prompt, AIResponse>({ baseUrl: "/query" });
