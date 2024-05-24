@@ -1,7 +1,9 @@
-import { Outlet, useLoaderData } from "@remix-run/react";
+import { Await, Outlet, defer, useLoaderData } from "@remix-run/react";
 import { NavBar } from "~/components/NavBar";
 import { getChats } from "~/.server/chats";
 import { motion } from "framer-motion";
+import { Suspense } from "react";
+import { LoadingSpinner } from "~/components/LoadingSpinner";
 
 export const meta = () => {
     return [
@@ -11,8 +13,10 @@ export const meta = () => {
 }
 
 export async function loader() {
-    const chats = await getChats();
-    return { chats }
+
+    const chats = getChats();
+
+    return defer({ chats });
 }
 
 export default function Chat() {
@@ -23,7 +27,11 @@ export default function Chat() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="flex flex-row w-full h-full">
-            <NavBar chats={chats} />
+            <Suspense fallback={<LoadingSpinner />}>
+                <Await resolve={chats}>
+                    {chats => <NavBar chats={chats} />}
+                </Await>
+            </Suspense>
             <div className="flex flex-col w-full">
                 <Outlet />
             </div>

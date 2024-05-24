@@ -1,5 +1,5 @@
 import { db } from "./db/client";
-import { type MessageInsert, chats, messages, type Chat, ChatInsert } from "./db/schema";
+import { type MessageInsert, chats, messages, ChatInsert } from "./db/schema";
 
 export async function getChats() {
     return await db.query.chats.findMany({
