@@ -14,7 +14,7 @@ export function NavBar({ chats }: NavBarProps) {
             <Suspense fallback={<>{Array.from({ length: 5 }).map((_, i) => <MessageSkeleton key={i} />)}</>}>
                 <Await resolve={chats}>
                     {chats => chats.map(chat => (
-                        <div key={chat.id} className="w-full flex flex-row gap-1 py-2 pl-5 items-center group hover:bg-slate-700 cursor-pointer rounded">
+                        <div key={chat.id} className="full flex flex-row gap-1 py-2 pl-5 items-center group hover:bg-slate-700 cursor-pointer rounded">
                         <NavLink
                             unstable_viewTransition
                             className="grow text-nowrap overflow-x-clip"
@@ -67,7 +67,7 @@ export const NavBarSkeleton = ({ children }: { children?: ReactNode }) => {
                     <img alt="menu" src={menuIcon} />
                 </button>
             </div>
-            <div className="px-5 pb-4 w-full">
+            <div className="hover-animation px-5 pb-4 w-full">
                 <div className="flex items-center rounded-full bg-purple-800 text-white p-1 hover:bg-purple-900">
                     <Link
                         to={{
