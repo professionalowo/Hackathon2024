@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
+import { Message } from "~/.server/db/schema";
 
-const useSpeechSynthesis = (message: string) => {
+const useSpeechSynthesis = (message: Message) => {
     const [utterance, setUtterance] = useState<SpeechSynthesisUtterance | undefined>(undefined);
     useEffect(() => {
-        if (typeof document === "undefined") return;
-        const synthesis = new SpeechSynthesisUtterance(message);
+        if (typeof document === "undefined" || !message.ai) return;
+        const synthesis = new SpeechSynthesisUtterance(message.message);
         synthesis.lang = "en-US";
         setUtterance(synthesis);
-    }, [message])
+    }, [])
     return utterance;
 };
 

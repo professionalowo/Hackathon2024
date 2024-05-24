@@ -6,11 +6,16 @@ import volumeUpIcon from "../assets/volume-up-fill.svg?url";
 import volumeMuteIcon from "../assets/volume-mute-fill.svg?url";
 import { useSpeechSynthesis } from "~/lib/hooks/useSpeechSynthesis";
 
-export function Message({ message: { message, ai, timestamp } }: { message: Message }) {
-    const clearedMessage = useMemo(() => message.replaceAll(/\\n/g, ""), [message]);
+export function Message({ message: { message, ai, timestamp, chatId, id } }: { message: Message }) {
+    const clearedMessage = useMemo(() => {
+        const unescaped = message.replaceAll(/\\n/g, "#");
+        const withWhitespace = unescaped.replaceAll(/\.\./g, ".");
+
+        return withWhitespace.replaceAll(/#/g, " ");
+    }, [message]);
     const [date] = useState(new Date(timestamp));
     const [isVolumeOn, setIsVolumeOn] = useState(false);
-    const utterance = useSpeechSynthesis(clearedMessage);
+    const utterance = useSpeechSynthesis({ message: clearedMessage, ai, timestamp, chatId, id });
     useEffect(() => {
         if (utterance)
             utterance.onend = () => setIsVolumeOn(false);
