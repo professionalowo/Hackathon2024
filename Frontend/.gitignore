@@ -3,3 +3,7 @@ node_modules
 /.cache
 /build
 .env
+/pnpm-lock.yaml
+/packagelock.json
+/*.db
+/drizzle/*
