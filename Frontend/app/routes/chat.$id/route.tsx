@@ -24,10 +24,12 @@ export async function loader({ params }: LoaderFunctionArgs) {
 
 export async function action({ request, params }: ActionFunctionArgs) {
     const data = await request.formData();
-    const prompt = data.get("prompt") as string;
+    let message = data.get("prompt")! as string;
+    const simple = data.get("simple") as string | undefined;
+    if (simple) message += " use simple and concise language"
     const id = Number(params.id);
     const chat = await getChatById(id);
-    const { sources } = await messagePromptFlow(prompt, chat!);
+    const { sources } = await messagePromptFlow(message, chat!);
     return { sources };
 }
 
@@ -50,7 +52,7 @@ export default function ChatInner() {
                     {optimisticMessage && <Message message={optimisticMessage!} />}
                     <div className="bg-orange rounded-3xl p-3 w-fit"><TypingDots /></div>
                 </>)}
-                {sources && <abbr className="text-xl" title={(sources??["what"]).map(s => s).join("\n")}>&ldquo;</abbr>}
+                {sources && <abbr className="text-xl" title={(sources ?? ["what"]).map(s => s).join("\n")}>&ldquo;</abbr>}
                 {chat?.messages.length === 0 && !isFetching && <InitialGreeting className={"flex flex-col items-center justify-center h-full grow w-full"} />}
             </div>
             <span id="end" ref={end}></span>
