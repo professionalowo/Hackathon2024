@@ -22,7 +22,7 @@ def table_to_markdown(table):
 
 
 # Extract tables from each page of the PDF and convert to markdown
-pdf_path = 'ARCL_RG.pdf'
+pdf_path = '../rawFiles/ARCL_RG.pdf'
 markdown_tables = []
 
 with pdfplumber.open(pdf_path) as pdf:
