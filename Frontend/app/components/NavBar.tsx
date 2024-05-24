@@ -76,7 +76,7 @@ export const NavBarSkeleton = ({ children }: { children?: ReactNode }) => {
                     >
                         <img alt="add" src={addIcon} className="m-3" style={{ minWidth: "32px" }} />
                         {isOpen && (
-                            <span className="text-nowrap">
+                            <span className="text-nowrap" style={{minWidth:"150px"}}>
                                 New Chat
                             </span>
                         )}
