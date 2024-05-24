@@ -16,3 +16,7 @@ html {
 .hover-animation:hover {
     transform: scale(1.15); /* Or any other transformation you prefer */
 }
+
+a.active {
+    @apply underline;
+}
