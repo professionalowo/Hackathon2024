@@ -7,6 +7,7 @@ import {
 } from "@remix-run/react";
 
 import stylesheet from "./css/main.css?url";
+import lightmode from "./css/light.css?url";
 import icon from "./assets/chat-left-dots.svg";
 import { LinksFunction } from "@remix-run/node";
 import { AnimatePresence } from "framer-motion";
@@ -16,6 +17,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: stylesheet },
+  { rel: "stylesheet", href: lightmode, media: "(prefers-color-scheme: light)" },
   { rel: "icon", type: "image/svg", href: icon }
 ];
 
