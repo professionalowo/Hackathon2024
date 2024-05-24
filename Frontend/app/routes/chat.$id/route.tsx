@@ -5,8 +5,9 @@ import { messagePromptFlow } from "~/.server/api";
 import { getChatById } from "~/.server/chats";
 import { ChatBox } from "~/components/ChatBox";
 import { Message } from "~/components/Message";
-import { fetchingContext } from "../chat/route";
+import { fetchingContext } from "~/lib/context/fetchingContext";
 import { TypingDots } from "~/components/TypingDots";
+import { optimisticMessageContext } from "~/lib/context/optimisticMessageContext";
 
 export function meta({ params }: MetaArgs) {
     return [{ title: `Chat ${params.id}` }];
@@ -32,8 +33,9 @@ export default function ChatInner() {
     const { chat } = useLoaderData<typeof loader>();
     const end = useRef<HTMLSpanElement>(null);
     const { isFetching } = useContext(fetchingContext)!;
+    const { optimisticMessage } = useContext(optimisticMessageContext)!;
     useEffect(() => {
-        end.current?.scrollIntoView();
+        end.current?.scrollIntoView({ behavior: "smooth" });
     }, [chat, isFetching]);
     return (
         <ChatBox>
@@ -41,7 +43,10 @@ export default function ChatInner() {
                 {chat?.messages.map(
                     (message) => <Message key={`${message.id}-${chat.id}`} message={message} />
                 )}
-                {isFetching && <div className="bg-purple-700 rounded-3xl p-3 w-fit"><TypingDots /></div>}
+                {isFetching && (<>
+                    {optimisticMessage && <Message message={optimisticMessage!} />}
+                    <div className="bg-purple-700 rounded-3xl p-3 w-fit"><TypingDots /></div>
+                </>)}
             </div>
             <span id="end" ref={end}></span>
             <ScrollRestoration />

@@ -24,6 +24,8 @@ class APIClient<TPrompt extends Record<string, unknown>, TResponse extends Recor
 }
 
 export async function messagePromptFlow(message: string, { id, summary }: Chat) {
+    await new Promise((resolve) => setTimeout(resolve, 5000));
+
     const addMessagePromise = addMessageToChat({ message, ai: false, timestamp: Date.now(), chatId: id });
     //const answerPromise = api.prompt({ question: message, summary: summary ?? null });
     const answerPromise = new Promise<AIResponse>((resolve) => resolve({ summary: summary ?? "", reply: "This is a test response" }));

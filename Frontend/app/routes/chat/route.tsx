@@ -2,7 +2,10 @@ import { Outlet, defer, useLoaderData } from "@remix-run/react";
 import { NavBar } from "~/components/NavBar";
 import { getChats } from "~/.server/chats";
 import { motion } from "framer-motion";
-import { createContext, useState } from "react";
+import { useState } from "react";
+import { fetchingContext } from "~/lib/context/fetchingContext";
+import { optimisticMessageContext } from "~/lib/context/optimisticMessageContext";
+import { Message } from "~/.server/db/schema";
 
 export const meta = () => {
     return [
@@ -15,10 +18,10 @@ export async function loader() {
     const chats = getChats();
     return defer({ chats });
 }
-type FetchingContext = { isFetching: boolean, setIsFetching: (isFetching: boolean) => void }
-export const fetchingContext = createContext<FetchingContext | undefined>(undefined);
+
 export default function Chat() {
     const [isFetching, setIsFetching] = useState(false);
+    const [optimisticMessage, setOptimisticMessage] = useState<Message | undefined>(undefined);
     const { chats } = useLoaderData<typeof loader>();
     return (
         <motion.div
@@ -28,9 +31,11 @@ export default function Chat() {
             className="flex flex-row w-full h-full">
             <NavBar chats={chats} />
             <fetchingContext.Provider value={{ isFetching, setIsFetching }}>
-                <div className="flex flex-col w-full">
-                    <Outlet />
-                </div>
+                <optimisticMessageContext.Provider value={{ optimisticMessage, setOptimisticMessage }}>
+                    <div className="flex flex-col w-full">
+                        <Outlet />
+                    </div>
+                </optimisticMessageContext.Provider>
             </fetchingContext.Provider>
         </motion.div>
     )
