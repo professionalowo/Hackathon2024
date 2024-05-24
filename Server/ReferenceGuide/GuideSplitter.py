@@ -1,7 +1,10 @@
+import fitz
 import pymupdf
 import json
 import os
 import re
+import io
+from PIL import Image
 
 
 # not used rn, could be usefull later
@@ -11,6 +14,23 @@ def findtables(doc):
         tabs = page.find_tables()  # locate and extract any tables on page
         if len(tabs.tables) != 0:
             print(f"{len(tabs.tables)} found on {page}")  # display number of found tables
+
+
+# prints out the whole page not just the image
+def picture_extraction(doc):
+    pages = []
+    picture_info = []
+    for page_number in range(len(doc)):
+        pictures = doc.get_page_images(page_number)
+        page = doc.load_page(page_number)
+        if len(pictures) != 0:
+            pages.append(page)
+            picture_info.append(pictures)
+    for page in pages:  # iterate through the pages
+        pix = page.get_pixmap()  # render page to an image
+        script_directory = os.path.dirname(os.path.realpath(__file__))
+        pictures_folder = os.path.join(script_directory, "Pictures")
+        pix.save(os.path.join(pictures_folder, f"page-{page.number}.png"))
 
 
 # This function is specific to the pdf
@@ -118,6 +138,8 @@ def extract_command_to_json(doc):
 
         with open(file_path, "w") as json_file:
             json.dump(json_data, json_file, indent=4)
+
+
 
 
 if __name__ == "__main__":
