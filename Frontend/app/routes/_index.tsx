@@ -17,7 +17,7 @@ export default function Index() {
         Your AGV error-fixing expert. Trust us for swift solutions and seamless operations!
       </p>
       <div className="hover-animation">
-        <NavLink unstable_viewTransition className="px-5 py-3 bg-purple-800 hover:bg-purple-900 rounded-md" to={"/chat"}>Start Chatting</NavLink>
+        <NavLink unstable_viewTransition className="px-5 py-3 bg-orange text-white hover:bg-orange-400 rounded-md" to={"/chat"}>Start Chatting</NavLink>
       </div>
     </div>
   );

@@ -1,0 +1,20 @@
+:root {
+  --primary: #171717;
+  --secondary: #262626;
+  --tertiary: #363636;
+}
+.bg-orange {
+  background: #ffa500;
+  filter: brightness(0.8);
+}
+
+.bg-primary {
+  background: var(--primary);
+}
+.bg-secondary {
+  background: var(--secondary);
+}
+
+.bg-tertiary {
+  background: var(--tertiary);
+}

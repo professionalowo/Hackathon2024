@@ -9,9 +9,9 @@ import { useSpeechSynthesis } from "~/lib/hooks/useSpeechSynthesis";
 export function Message({ message: { message, ai, timestamp, chatId, id } }: { message: Message }) {
     const clearedMessage = useMemo(() => {
         const unescaped = message.replaceAll(/\\n/g, "#");
-        const withWhitespace = unescaped.replaceAll(/\.\./g, ".");
-
-        return withWhitespace.replaceAll(/#/g, " ");
+        const withWhitespace = unescaped.replaceAll(/\.\./g, ".").replaceAll(/#/g, " ");
+        const withLineBreaks = withWhitespace.replaceAll(/<br>/g, "\n");
+        return withLineBreaks;
     }, [message]);
     const [date] = useState(new Date(timestamp));
     const [isVolumeOn, setIsVolumeOn] = useState(false);
@@ -26,7 +26,7 @@ export function Message({ message: { message, ai, timestamp, chatId, id } }: { m
             transition={{ type: "spring", damping: 10, stiffness: 120 }}
             initial={{ x: (ai ? -100 : 100) }}
             animate={{ x: 0 }}
-            className={cn("flex flex-row w-fit px-5 py-3 gap-3 rounded-3xl bg-slate-600", { "bg-purple-800": ai })}>
+            className={cn("flex flex-row w-fit px-5 py-3 gap-3 rounded-3xl bg-secondary", { "bg-tertiary": ai })}>
             <div className="flex flex-row">
                 <div className="flex flex-col">
                     <p>{clearedMessage}</p>

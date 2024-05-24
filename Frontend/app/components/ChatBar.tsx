@@ -22,12 +22,12 @@ export function ChatBar() {
             setOptimisticMessage({ id: -1, message: text, ai: false, timestamp: Date.now(), chatId: 0 });
             setText("");
         }}>
-            <div className="flex flex-row bg-slate-600 text-slate-100 rounded-3xl px-4 py-3 w-1/2 text-xl animation">
+            <div className="flex flex-row bg-tertiary text-slate-100 rounded-3xl px-4 py-3 w-1/2 text-xl animation">
                 <input
                     disabled={isSubmitting}
                     placeholder="Enter your Message"
                     name="prompt"
-                    className="w-full bg-slate-600 focus:outline-none"
+                    className="w-full bg-tertiary focus:outline-none"
                     value={text}
                     onChange={(e) => setText(e.target.value)}
                     required

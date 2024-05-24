@@ -1,11 +1,13 @@
 @import url("./reset.css");
+@import url("./color.css");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 html {
-  @apply bg-slate-900 text-slate-100;
+  background: var(--primary);
+  @apply text-slate-100;
 }
 
 .hover-animation {
@@ -16,6 +18,7 @@ html {
   transform: scale(1.15); /* Or any other transformation you prefer */
 }
 
-.group:has(a.active){
-  @apply bg-slate-600;
+.group:has(a.active) {
+  background: var(--tertiary);
 }
+
