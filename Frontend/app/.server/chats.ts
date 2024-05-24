@@ -22,7 +22,13 @@ export async function getChatById(id: number) {
         },
         with: { messages: true }
     });
+}
 
+export async function removeChatById(id: number) {
+    return Promise.all([
+        db.delete(messages).where(eq(messages.chatId, id)),
+        db.delete(chats).where(eq(chats.id, id))
+    ]);
 }
 
 export async function updateChatSummary(id: number, summary: string) {
