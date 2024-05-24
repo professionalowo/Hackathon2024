@@ -1,13 +1,16 @@
-import { Chat, Message } from "~/components/NavBar";
-const chats: Chat[] = [{ timestamp: 1, messages: [{message:"How can i help you?",ai:true,timestamp:3}] }, { timestamp: 2, messages: [] }, { timestamp: 3, messages: [] }, { timestamp: 4, messages: [] }, { timestamp: 5, messages: [] }];
+import { db } from "./db/client";
+import { chats, messages, type Chat, type Message } from "./db/schema";
 
-export function getChats(): Array<Chat> {
-    return chats;
+export async function getChats() {
+    return await db.query.chats.findMany({
+        with: { messages: true }
+    });
 }
-export function addChats(chat: Chat) {
-    chats.push(chat)
+export async function addChats(chat: Chat) {
+    await db.insert(chats).values(chat);
 }
 
-export function addMessageToChat(chat: Chat, message: Message) {
-    chat.messages.push(message);
+export async function addMessageToChat(message: Message) {
+    await db.insert(messages).values(message);
 }
+export type ChatWithMessages = Awaited<ReturnType<typeof getChats>>[number];
