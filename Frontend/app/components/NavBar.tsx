@@ -17,7 +17,7 @@ export function NavBar({ chats }: NavBarProps) {
                         <div key={chat.id} className="w-full flex flex-row gap-1 py-2 pl-5 items-center group hover:bg-slate-700 cursor-pointer rounded">
                         <NavLink
                             unstable_viewTransition
-                            className="grow"
+                            className="grow text-nowrap overflow-x-clip"
                             to={{
                                 pathname: `/chat/${chat.id}`,
                                 search: (function () {
@@ -30,7 +30,6 @@ export function NavBar({ chats }: NavBarProps) {
                             <Link to={`/chat/${chat.id}/delete`} className={"pr-5 invisible group-hover:visible"}>
                                 <img alt={"x"} src={xIcon} className={"w-full h-full"}/>
                             </Link>
-
                         </div>
                     ))}
                 </Await>

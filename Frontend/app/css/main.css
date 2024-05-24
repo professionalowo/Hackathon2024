@@ -16,6 +16,6 @@ html {
   transform: scale(1.15); /* Or any other transformation you prefer */
 }
 
-a.active {
+.group:has(a.active){
   @apply bg-slate-600;
 }
