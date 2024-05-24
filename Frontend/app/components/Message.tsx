@@ -1,7 +1,7 @@
-import { type Message } from "~/components/NavBar";
 import { useState } from "react";
 import { cn } from "~/lib/cn";
 import { motion } from "framer-motion";
+import { type Message } from "~/.server/db/schema";
 
 export function Message({ message: { message, ai, timestamp } }: { message: Message }) {
     const [date] = useState(new Date(timestamp));
