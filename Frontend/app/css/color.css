@@ -2,10 +2,10 @@
   --primary: #171717;
   --secondary: #262626;
   --tertiary: #363636;
+  --orange:#ffa500;
 }
 .bg-orange {
-  background: #ffa500;
-  filter: brightness(0.8);
+  background: var(--orange);
 }
 
 .bg-primary {

@@ -17,8 +17,13 @@ export function ChatBar() {
         setIsFetching(isSubmitting);
     }, [isSubmitting, setIsFetching])
 
-    return <div className="flex justify-center items-end w-full h-fit p-4">
-        <fetcher.Form className="flex w-full justify-center" method="post" autoComplete="off" onSubmit={() => {
+    return <div className="flex flex-col justify-center items-end w-full h-fit p-4 gap-1">
+        <div className="flex flex-row self-center gap-1">
+            <h4>Include more technical Context and detailed explanations in the answer?</h4>
+            <input type="checkbox" id="switch"/>
+            <label htmlFor="switch">Toggle</label>
+        </div>
+        <fetcher.Form className="flex flex-row w-full justify-center gap-3" method="post" autoComplete="off" onSubmit={() => {
             setOptimisticMessage({ id: -1, message: text, ai: false, timestamp: Date.now(), chatId: 0 });
             setText("");
         }}>
