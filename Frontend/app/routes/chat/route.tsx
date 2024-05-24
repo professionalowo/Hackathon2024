@@ -1,5 +1,5 @@
 import { Outlet, useLoaderData } from "@remix-run/react";
-import { type Chat, NavBar } from "~/components/NavBar";
+import { NavBar } from "~/components/NavBar";
 import { getChats } from "~/.server/chats";
 import { motion } from "framer-motion";
 
@@ -10,8 +10,8 @@ export const meta = () => {
     ];
 }
 
-export function loader() {
-    const chats = getChats();
+export async function loader() {
+    const chats = await getChats();
     return { chats }
 }
 

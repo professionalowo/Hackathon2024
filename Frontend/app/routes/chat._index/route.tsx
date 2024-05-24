@@ -1,17 +1,16 @@
 import { ActionFunctionArgs, redirect } from "@remix-run/node";
 import { ChatBox } from "~/components/ChatBox";
-import { addChats } from "~/.server/chats";
-import { Chat } from "~/components/NavBar";
+import { addChats, addMessageToChat } from "~/.server/chats";
+import { type ChatInsert } from "~/.server/db/schema";
 
 export async function action({ request }: ActionFunctionArgs) {
-    const url = new URL(request.url);
-    console.log(url);
     const data = await request.formData();
     const message = data.get("prompt")! as string;
     // Check if the current path is exactly "/chat"
-    const newChat: Chat = { timestamp: Date.now(), messages: [{ message, ai: false, timestamp: Date.now() }] };
-    addChats(newChat);
-    return redirect(`/chat/${newChat.timestamp}`);
+    const newChat: ChatInsert = { timestamp: Date.now() };
+    const addedChat = await addChats(newChat);
+    await addMessageToChat({ message, ai: false, timestamp: Date.now(), chatId: addedChat[0].id });
+    return redirect(`/chat/${addedChat[0].id}`);
 }
 
 
