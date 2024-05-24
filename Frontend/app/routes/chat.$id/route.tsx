@@ -8,7 +8,7 @@ import { Message } from "~/components/Message";
 import { fetchingContext } from "~/lib/context/fetchingContext";
 import { TypingDots } from "~/components/TypingDots";
 import { optimisticMessageContext } from "~/lib/context/optimisticMessageContext";
-import {InitialGreeting} from "~/components/InitialGreeting";
+import { InitialGreeting } from "~/components/InitialGreeting";
 
 export function meta({ params }: MetaArgs) {
     return [{ title: `Chat ${params.id}` }];
@@ -18,6 +18,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
     const id = Number(params.id);
     if (!id) throw redirect("/chat");
     const chat = await getChatById(id);
+    if (!chat) return redirect("/chat");
     return { chat };
 }
 
@@ -48,7 +49,7 @@ export default function ChatInner() {
                     {optimisticMessage && <Message message={optimisticMessage!} />}
                     <div className="bg-purple-700 rounded-3xl p-3 w-fit"><TypingDots /></div>
                 </>)}
-                {chat?.messages.length === 0 && <InitialGreeting className={"flex flex-col items-center justify-center h-full grow"}/>}
+                {chat?.messages.length === 0 && <InitialGreeting className={"flex flex-col items-center justify-center h-full grow"} />}
             </div>
             <span id="end" ref={end}></span>
             <ScrollRestoration />
