@@ -17,6 +17,6 @@ export async function action({ request }: ActionFunctionArgs) {
 
 export default function Home() {
     return <ChatBox>
-        <InitialGreeting className={"flex flex-col items-center justify-center h-full"}/>
+        <InitialGreeting className={"flex flex-col items-center justify-center gap-3 h-full"}/>
     </ChatBox>
 }

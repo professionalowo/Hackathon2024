@@ -51,7 +51,7 @@ export default function ChatInner() {
                     <div className="bg-orange rounded-3xl p-3 w-fit"><TypingDots /></div>
                 </>)}
                 {sources && <abbr className="text-xl" title={(sources??["what"]).map(s => s).join("\n")}>&ldquo;</abbr>}
-                {chat?.messages.length === 0 && !isFetching && <InitialGreeting className={"flex flex-col items-center justify-center h-full grow w-full"} />}
+                {chat?.messages.length === 0 && !isFetching && <InitialGreeting className={"flex flex-col items-center justify-center gap-3 h-full grow w-full"} />}
             </div>
             <span id="end" ref={end}></span>
             <ScrollRestoration />

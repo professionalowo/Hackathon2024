@@ -1,6 +1,7 @@
+import twoPeeps from '../assets/two_peeps.svg?url';
 export function InitialGreeting(props: React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>) {
     return <div {...props}>
-        <h1 className="text-4xl text-center font-bold">Hi, I&#039;m AGV TechSupport UwU, your virtual tech support assistant. <br />
-            How can I assist you today?</h1>
+        <img src={twoPeeps} alt="twoPeeps" className="w-1/6 mx-auto" />
+        <h1 className="text-4xl text-center font-light">Hey! How can I assist you today?</h1>
     </div>
 }
