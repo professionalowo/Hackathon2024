@@ -9,7 +9,7 @@ def query():
     data = request.get_json()
     text = data.get('text')
     previous_summary = data.get('previous_summary', None)
-    result = ai_backend_main.user_TEST(text, previous_summary)
+    result = ai_backend_main.user_input(text, previous_summary)
     if isinstance(result, set):
         result = list(result)
     return jsonify(result)
