@@ -1,9 +1,20 @@
 import { addMessageToChat, updateChatSummary } from "./chats";
 import { Chat } from "./db/schema";
-
-type Prompt = { summary: string | null, question: string };
-type AIResponse = { summary: string, reply: string };
+import { z } from "zod";
 type APIClientProps = { baseUrl: `/${string}`, secure?: boolean };
+
+const PromptSchema = z.object({
+    previous_summary: z.string().nullable(),
+    text: z.string().min(1),
+});
+
+const AIResponseSchema = z.object({
+    summary: z.string().min(1),
+    reply: z.string().min(1),
+    sources: z.array(z.string()),
+})
+type AIResponse = z.infer<typeof AIResponseSchema>;
+type Prompt = z.infer<typeof PromptSchema>;
 class APIClient<TPrompt extends Record<string, unknown>, TResponse extends Record<string, unknown>> {
     private baseUrl: `/${string}`;
     private secure: boolean;
@@ -27,8 +38,9 @@ export async function messagePromptFlow(message: string, { id, summary }: Chat) 
     //await new Promise((resolve) => setTimeout(resolve, 5000));
 
     const addMessagePromise = addMessageToChat({ message, ai: false, timestamp: Date.now(), chatId: id });
-    //const answerPromise = api.prompt({ question: message, summary: summary ?? null });
-    const answerPromise = new Promise<AIResponse>((resolve) => resolve({ summary: summary ?? "", reply: "This is a test response" }));
+    //const prompt = PromptSchema.parse({ question: message, summary: summary ?? null });
+    //const answerPromise = api.prompt(prompt);
+    const answerPromise = new Promise<AIResponse>((resolve) => resolve({ sources: [], summary: summary ?? "", reply: "This is a test response" }));
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [messageInserted, answer] = await Promise.all([addMessagePromise, answerPromise]);
@@ -40,4 +52,4 @@ export async function messagePromptFlow(message: string, { id, summary }: Chat) 
     return aiMessage;
 }
 
-export const api = new APIClient<Prompt, AIResponse>({ baseUrl: "/api" });
+export const api = new APIClient<Prompt, AIResponse>({ baseUrl: "/query" });

@@ -4,6 +4,7 @@ import addIcon from "../assets/plus-lg.svg?url";
 import menuIcon from "../assets/list.svg?url";
 import { ChatWithMessages } from "~/.server/chats";
 import { motion, Variants } from "framer-motion";
+import xIcon from "../assets/x.svg?url";
 
 export type NavBarProps = { chats: Array<ChatWithMessages> | Promise<Array<ChatWithMessages>> };
 
@@ -13,10 +14,10 @@ export function NavBar({ chats }: NavBarProps) {
             <Suspense fallback={<>{Array.from({ length: 5 }).map((_, i) => <MessageSkeleton key={i} />)}</>}>
                 <Await resolve={chats}>
                     {chats => chats.map(chat => (
+                        <div key={chat.id} className="w-full flex flex-row gap-1 py-2 pl-5 items-center group hover:bg-slate-700 cursor-pointer rounded">
                         <NavLink
                             unstable_viewTransition
-                            key={chat.id}
-                            className="hover:bg-slate-700 cursor-pointer rounded py-2 pl-5"
+                            className="grow text-nowrap overflow-x-clip"
                             to={{
                                 pathname: `/chat/${chat.id}`,
                                 search: (function () {
@@ -26,6 +27,10 @@ export function NavBar({ chats }: NavBarProps) {
                         >
                             Chat {chat.id}
                         </NavLink>
+                            <Link to={`/chat/${chat.id}/delete`} className={"pr-5 invisible group-hover:visible"}>
+                                <img alt={"x"} src={xIcon} className={"w-full h-full"}/>
+                            </Link>
+                        </div>
                     ))}
                 </Await>
             </Suspense>
@@ -76,7 +81,7 @@ export const NavBarSkeleton = ({ children }: { children?: ReactNode }) => {
                     >
                         <img alt="add" src={addIcon} className="m-3" style={{ minWidth: "32px" }} />
                         {isOpen && (
-                            <span className="text-nowrap" style={{minWidth:"150px"}}>
+                            <span className="text-nowrap text-xl" style={{minWidth:"150px"}}>
                                 New Chat
                             </span>
                         )}
