@@ -1,9 +1,13 @@
-import { ActionFunctionArgs, LoaderFunctionArgs } from "@remix-run/node";
+import { ActionFunctionArgs, LoaderFunctionArgs, MetaArgs } from "@remix-run/node";
 import { ScrollRestoration, redirect, useLoaderData } from "@remix-run/react";
 import { useEffect, useRef } from "react";
 import { addMessageToChat, getChatById } from "~/.server/chats";
 import { ChatBox } from "~/components/ChatBox";
 import { Message } from "~/components/Message";
+
+export function meta({ params }: MetaArgs) {
+    return [{ title: `Chat ${params.id}` }];
+}
 
 export async function loader({ params }: LoaderFunctionArgs) {
     const id = Number(params.id);

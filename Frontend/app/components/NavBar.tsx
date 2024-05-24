@@ -1,13 +1,35 @@
-import { NavLink } from "@remix-run/react"
-import { useState } from "react"
+import { Await, NavLink } from "@remix-run/react"
+import { ReactNode, Suspense, useState } from "react"
 import { cn } from "~/lib/cn"
 import addIcon from "../assets/plus-lg.svg?url";
 import menuIcon from "../assets/list.svg?url"
 import { ChatWithMessages } from "~/.server/chats";
 
-export type NavBarProps = { chats: Array<ChatWithMessages> }
-
+export type NavBarProps = { chats: Array<ChatWithMessages> | Promise<Array<ChatWithMessages>> }
 export function NavBar({ chats }: NavBarProps) {
+    return <NavBarSkeleton>
+        <Suspense fallback={
+            <>
+                {Array.from({ length: 5 }).map((_, i) => <MessageSkeleton key={i} />)}
+            </>
+        }>
+            <Await resolve={chats}>
+                {chats => chats.map(chat => (
+                    <NavLink unstable_viewTransition key={chat.id}
+                        className="hover:bg-slate-700 cursor-pointer rounded py-2 pl-5 " to={`/chat/${chat.id}`}>
+                        Chat {chat.id}
+                    </NavLink>)
+                )}
+            </Await>
+        </Suspense>
+    </NavBarSkeleton>
+}
+
+function MessageSkeleton() {
+    return <div className="bg-slate-700 cursor-pointer rounded p-5 animate-pulse"></div>
+}
+
+export const NavBarSkeleton = ({ children }: { children?: ReactNode }) => {
     const [isOpen, setIsOpen] = useState(false)
     return <nav
         className={cn("bg-slate-800 rounded-r h-full flex flex-row justify-start align-top", { "w-1/6": isOpen })}>
@@ -23,13 +45,7 @@ export function NavBar({ chats }: NavBarProps) {
                     </button>
                 </div>
             </div>
-            {isOpen && chats.map(chat => (
-                <NavLink unstable_viewTransition key={chat.id}
-                    className="hover:bg-slate-700 cursor-pointer rounded py-2 pl-5 " to={`/chat/${chat.id}`}>
-                    Chat {chat.id}
-                </NavLink>)
-            )}
+            {isOpen && children}
         </div>
-
     </nav>
 }
