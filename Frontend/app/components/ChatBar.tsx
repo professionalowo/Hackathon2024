@@ -19,7 +19,7 @@ export function ChatBar() {
 
     return <div className="flex flex-col justify-center items-end w-full h-fit p-4 gap-2">
         <div className="flex flex-row self-center gap-1">
-            <h4>Include more technical Context and detailed explanations in the answer?</h4>
+            <h4>Add more technical details and explanations, making it easy to understand without being too brief</h4>
             <input type="checkbox" id="switch"/>
             <label htmlFor="switch">Toggle</label>
         </div>
