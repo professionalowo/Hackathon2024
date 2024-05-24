@@ -38,7 +38,7 @@ export async function messagePromptFlow(message: string, { id, summary }: Chat) 
     //await new Promise((resolve) => setTimeout(resolve, 5000));
 
     const addMessagePromise = addMessageToChat({ message, ai: false, timestamp: Date.now(), chatId: id });
-    //const prompt = PromptSchema.parse({ text: message, previous_summary: "" });
+    //const prompt = PromptSchema.parse({ text: message, previous_summary: "" } satisfies Prompt);
     //const answerPromise = api.prompt(prompt);
     const answerPromise = new Promise<AIResponse>((resolve) => resolve({ sources: [], summary: summary ?? "", reply: "This is a test response" }));
 
