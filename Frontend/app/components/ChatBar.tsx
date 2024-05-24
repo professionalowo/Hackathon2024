@@ -9,7 +9,7 @@ export function ChatBar() {
     const [isMicOpen, setIsMicOpen] = useState(false);
     return <div className="flex justify-center items-end w-full h-fit p-4">
         <fetcher.Form className="flex w-full justify-center" method="post" autoComplete="off" onSubmit={() => setText("")}>
-            <div className="flex flex-row bg-slate-600 text-slate-100 rounded-3xl px-4 py-3 w-1/2 text-xl">
+            <div className="flex flex-row bg-slate-600 text-slate-100 rounded-3xl px-4 py-3 w-1/2 text-xl animation">
                 <input
                     placeholder="Enter your Message"
                     name="prompt"
@@ -18,7 +18,7 @@ export function ChatBar() {
                     onChange={(e) => setText(e.target.value)}
                     required
                 />
-                <button type="button" onClick={() => setIsMicOpen(o => !o)}>
+                <button className="hover-animation" type="button" onClick={() => setIsMicOpen(o => !o)}>
                     <img alt={"mic"} src={isMicOpen ? micMute : mic}>
                     </img>
                 </button>

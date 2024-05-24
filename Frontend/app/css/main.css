@@ -9,10 +9,10 @@ html {
     @apply bg-slate-900 text-slate-100
 }
 
-.nav-link-container {
+.hover-animation {
     transition: transform 0.3s ease; /* You can adjust the transition timing */
 }
 
-.nav-link-container:hover {
+.hover-animation:hover {
     transform: scale(1.15); /* Or any other transformation you prefer */
 }

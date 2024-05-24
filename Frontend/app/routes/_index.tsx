@@ -16,7 +16,7 @@ export default function Index() {
       <p className="text-center text-lg">
         Your AGV error-fixing expert. Trust us for swift solutions and seamless operations!
       </p>
-      <div className="nav-link-container">
+      <div className="hover-animation">
         <NavLink unstable_viewTransition className="px-5 py-3 bg-purple-800 hover:bg-purple-900 rounded-md" to={"/chat"}>Start Chatting</NavLink>
       </div>
     </div>
