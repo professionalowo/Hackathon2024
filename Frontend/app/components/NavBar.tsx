@@ -72,7 +72,7 @@ export const NavBarSkeleton = ({ children }: { children?: ReactNode }) => {
                             })()
                         }}
                         reloadDocument
-                        className="w-full h-fit flex items-center"
+                        className="w-full h-fit flex items-center overflow-x-clip"
                     >
                         <img alt="add" src={addIcon} className="m-3" style={{ minWidth: "32px" }} />
                         {isOpen && (
