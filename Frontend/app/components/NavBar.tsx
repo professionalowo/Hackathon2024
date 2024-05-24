@@ -39,14 +39,14 @@ function MessageSkeleton() {
 
 export const NavBarSkeleton = ({ children }: { children?: ReactNode }) => {
     const [searchParams, setSearchParams] = useSearchParams();
-    const [isOpen, setIsOpen] = useState(Boolean(searchParams.get("open") ?? "false"));
+    const [isOpen, setIsOpen] = useState((searchParams.get("open")==="true"));
 
     useEffect(() => {
         setSearchParams(prev => ({ open: isOpen, ...prev }));
     }, [isOpen])
 
     const containerVariants = {
-        open: { width: "16.66%", transition: { type: "tween", stiffness: 100, damping: 20 } },
+        open: { width: "16%", transition: { type: "tween", stiffness: 100, damping: 20 } },
         closed: { width: "7rem", transition: { type: "tween", stiffness: 100, damping: 20 } },
     } satisfies Variants;
 
@@ -63,7 +63,7 @@ export const NavBarSkeleton = ({ children }: { children?: ReactNode }) => {
                 </button>
             </div>
             <div className="px-5 pb-4 w-full">
-                <div className="flex items-center rounded-full bg-purple-800 text-white p-1 hover:bg-purple-900 overflow-clip">
+                <div className="flex items-center rounded-full bg-purple-800 text-white p-1 hover:bg-purple-900">
                     <Link
                         to={{
                             pathname: "/chat/new",
