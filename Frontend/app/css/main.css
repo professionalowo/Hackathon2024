@@ -18,5 +18,5 @@ html {
 }
 
 a.active {
-    @apply underline;
+    @apply bg-slate-600;
 }
