@@ -11,6 +11,7 @@
 .bg-primary {
   background: var(--primary);
 }
+
 .bg-secondary {
   background: var(--secondary);
 }
