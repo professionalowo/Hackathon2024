@@ -11,9 +11,7 @@ export const meta = () => {
 }
 
 export async function loader() {
-
     const chats = getChats();
-
     return defer({ chats });
 }
 
