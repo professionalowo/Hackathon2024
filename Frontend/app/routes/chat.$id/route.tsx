@@ -1,7 +1,8 @@
 import { ActionFunctionArgs, LoaderFunctionArgs, MetaArgs } from "@remix-run/node";
 import { ScrollRestoration, redirect, useLoaderData } from "@remix-run/react";
 import { useEffect, useRef } from "react";
-import { addMessageToChat, getChatById } from "~/.server/chats";
+import { messagePromptFlow } from "~/.server/api";
+import { getChatById } from "~/.server/chats";
 import { ChatBox } from "~/components/ChatBox";
 import { Message } from "~/components/Message";
 
@@ -20,8 +21,9 @@ export async function action({ request, params }: ActionFunctionArgs) {
     const data = await request.formData();
     const prompt = data.get("prompt") as string;
     const id = Number(params.id);
-    const message = await addMessageToChat({ message: prompt, ai: false, timestamp: Date.now(), chatId: id });
-    return { message };
+    const chat = await getChatById(id);
+    await messagePromptFlow(prompt, chat!);
+    return new Response(null, { status: 200 });
 }
 
 export default function ChatInner() {

@@ -9,6 +9,7 @@ import {
 const chats = sqliteTable("chats", {
   id: integer("id").primaryKey({ autoIncrement: true }),
   timestamp: integer("timestamp").notNull(),
+  summary: text("summary"),
 });
 
 // Define the messages table
