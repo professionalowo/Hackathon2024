@@ -13,6 +13,7 @@ def findtables(doc):
             print(f"{len(tabs.tables)} found on {page}")  # display number of found tables
 
 
+# This function is specific to the pdf
 def find_command_reference_section(doc):
     chapters = doc.get_toc()
     # Find the index of the chapter 'ARCL Command Reference'
@@ -30,6 +31,7 @@ def find_command_reference_section(doc):
             break
 
     filtered_chapters = [chapter for chapter in chapters[start_index:end_index + 1] if chapter[0] == 2]
+    filtered_chapters.append(chapters[end_index])
     return filtered_chapters
 
 
@@ -54,6 +56,7 @@ def extract_chapter_text(doc, chapter, nextchapter):
     return chapter_text.strip()  # Trim leading and trailing whitespaces
 
 
+# This function is specific to the pdf
 def create_json_from_chapter_text(chapter_text, chapter_title):
     json_data = {
         "title": "",
