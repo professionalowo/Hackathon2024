@@ -3,7 +3,7 @@ import twoPeeps from '../assets/two_peeps.svg?url';
 import { Link, LinkProps } from '@remix-run/react';
 export function InitialGreeting(props: React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>) {
     return <div {...props}>
-        <img src={twoPeeps} alt="twoPeeps" className="w-1/6 mx-auto mt-10" />
+        <img src={twoPeeps} alt="twoPeeps" className="w-1/6 h-1/2 mx-auto mt-10" />
         <h1 className="text-4xl text-center font-light">Hey! How can I assist you today?</h1>
         <div className='h-full w-full px-10 gap-10 flex flex-row justify-between align-middle pt-5'>
             <Card to={"/chat"}>
