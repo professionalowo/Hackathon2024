@@ -5,7 +5,7 @@ export function InitialGreeting(props: React.DetailedHTMLProps<React.HTMLAttribu
     return <div {...props}>
         <img src={twoPeeps} alt="twoPeeps" className="w-1/6 h-1/2 mx-auto mt-10" />
         <h1 className="text-4xl text-center font-light">Hey! How can I assist you today?</h1>
-        <div className='h-full w-full px-10 gap-10 flex flex-row justify-between align-middle pt-5'>
+        <div className='h-1/2 w-full px-10 gap-10 flex flex-row justify-between align-middle pt-5'>
             <Card to={"/chat"}>
                 <h1 className='text-xl'>Errors</h1>
                 <p>Ask me anytime you encounter an error!</p>
