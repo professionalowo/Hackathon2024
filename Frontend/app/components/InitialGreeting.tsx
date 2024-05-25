@@ -22,7 +22,7 @@ export function InitialGreeting(props: React.DetailedHTMLProps<React.HTMLAttribu
     </div>
 }
 function Card({ children, to }: { children: ReactNode, to: LinkProps["to"] }) {
-    return <Link to={to} className='flex flex-col justify-center items-center text-2xl gap-3 h-2/5 w-1/3 px-4 py-2 rounded shadow-sm shadow-slate-500  card-gradient hover-animation-s'>
+    return <Link to={to} className='flex flex-col justify-center items-center text-center text-2xl gap-3 h-2/5 w-1/3 px-4 py-2 rounded shadow-sm shadow-slate-500  card-gradient hover-animation-s overflow-clip'>
         {children}
     </Link>
 }
