@@ -50,7 +50,7 @@ export default function ChatInner() {
     }, [chat, isFetching]);
     return (
         <ChatBox>
-            <div className="flex flex-col gap-5 px-5 py-2 h-full">
+            <div className="flex flex-col gap-5 px-8 py-5 h-full">
                 {chat?.messages.map(
                     (message) => <Message key={`${message.id}-${chat.id}`} message={message} />
                 )}
@@ -64,7 +64,7 @@ export default function ChatInner() {
                         {(data.sources).map(source => <p className="rounded-3xl w-fit px-5 py-1 bg-tertiary" key={source}>{source}</p>)}
                     </div>
                 </div>}
-                {chat?.messages.length === 0 && !isFetching && <InitialGreeting className={"flex flex-col items-center justify-center h-full grow w-full"} />}
+                {chat?.messages.length === 0 && !isFetching && <InitialGreeting className={"flex flex-col items-center justify-center h-full gap-5 grow w-full"} />}
             </div>
             <span id="end" ref={end}></span>
             <ScrollRestoration />
