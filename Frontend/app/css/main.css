@@ -11,11 +11,19 @@ html {
 }
 
 .hover-animation {
-  transition: transform 0.3s ease; /* You can adjust the transition timing */
+  transition: transform 0.3s ease;
 }
 
 .hover-animation:hover {
-  transform: scale(1.15); /* Or any other transformation you prefer */
+  transform: scale(1.15);
+}
+
+.hover-animation-s {
+  transition: transform 0.3s ease;
+}
+
+.hover-animation-s:hover {
+  transform: scale(1.1);
 }
 
 .group:has(a.active) {
@@ -80,7 +88,6 @@ label:active:after {
   border-radius: 6px;
   padding: 5px 0;
 
-  /* Position the tooltip */
   position: absolute;
   z-index: 1;
   top: 100%;
@@ -90,4 +97,8 @@ label:active:after {
 
 .tooltip:hover .tooltiptext {
   visibility: visible;
+}
+
+.card-gradient {
+  background: linear-gradient(200deg, #3C3C3C, #171717);
 }
