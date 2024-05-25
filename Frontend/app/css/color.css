@@ -1,0 +1,25 @@
+:root {
+  --primary: #171717;
+  --secondary: #262626;
+  --tertiary: #363636;
+  --orange:#ffa500;
+}
+.bg-orange {
+  background: var(--orange);
+}
+
+.bg-primary {
+  background: var(--primary);
+}
+
+.bg-secondary {
+  background: var(--secondary);
+}
+
+.bg-tertiary {
+  background: var(--tertiary);
+}
+
+.text-orange {
+  color: var(--orange);
+}

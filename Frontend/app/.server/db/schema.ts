@@ -3,6 +3,7 @@ import {
   sqliteTable,
   text,
   integer,
+  blob,
 } from "drizzle-orm/sqlite-core";
 
 // Define the chats table
@@ -10,6 +11,7 @@ const chats = sqliteTable("chats", {
   id: integer("id").primaryKey({ autoIncrement: true }),
   timestamp: integer("timestamp").notNull(),
   summary: text("summary"),
+  sources: blob("sources", { mode: "json" }).$type<string[]>().default([]),
 });
 
 // Define the messages table

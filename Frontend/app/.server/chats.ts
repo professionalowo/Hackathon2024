@@ -35,4 +35,8 @@ export async function updateChatSummary(id: number, summary: string) {
     return db.update(chats).set({ summary }).where(eq(chats.id, id)).returning();
 }
 
+export async function updateChatSources(id: number, sources: string[]) {
+    return db.update(chats).set({ sources }).where(eq(chats.id, id)).returning();
+}
+
 export type ChatWithMessages = Awaited<ReturnType<typeof getChats>>[number];
