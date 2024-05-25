@@ -14,7 +14,7 @@ type UseMicrophone = {
 {
     isLoading: false,
     isError: false,
-    media: MediaStreamTrack | null
+    media: MediaStream | null
 };
 export function useMicrophone(activate: boolean) {
     const [stream, setStream] = useState<MediaStream | null>(null);
@@ -39,5 +39,5 @@ export function useMicrophone(activate: boolean) {
         staleTime: Infinity,
     });
 
-    return { media: data?.getAudioTracks()[0], isError, isLoading } as UseMicrophone;
+    return { media: data, isError, isLoading } as UseMicrophone;
 }

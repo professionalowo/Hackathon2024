@@ -4,19 +4,32 @@ import mic from "../assets/mic-fill.svg?url";
 import micMute from "../assets/mic-mute-fill.svg?url";
 import { fetchingContext } from "~/lib/context/fetchingContext"
 import { optimisticMessageContext } from "~/lib/context/optimisticMessageContext";
+import { useRecording } from "~/lib/hooks/useRecoring";
 
 export function ChatBar() {
     const fetcher = useFetcher();
     const [expert, setExpert] = useState<boolean>(false);
+
     const [text, setText] = useState<string>("");
     const [isMicOpen, setIsMicOpen] = useState(false);
     const { setIsFetching } = useContext(fetchingContext)!;
     const { setOptimisticMessage } = useContext(optimisticMessageContext)!;
+    const { data } = useRecording(isMicOpen);
     const isSubmitting = fetcher.state === "submitting";
-
     useEffect(() => {
         setIsFetching(isSubmitting);
     }, [isSubmitting, setIsFetching])
+    useEffect(() => {
+        console.log(data);
+        if (!isMicOpen && data.size > 0) {
+            const formData = new FormData();
+
+            formData.append("audio", data, "audio.ogg");
+            fetcher.submit(formData, { method: "POST", encType: "multipart/form-data" });
+            console.log("submitted " + data.size);
+            console.log(formData);
+        }
+    }, [isMicOpen])
 
     return <div className="flex flex-col justify-center items-end w-full h-fit p-4 gap-2">
         <div className="flex flex-row self-center gap-1">
