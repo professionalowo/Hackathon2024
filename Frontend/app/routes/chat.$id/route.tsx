@@ -26,7 +26,7 @@ export async function action({ request, params }: ActionFunctionArgs) {
     const data = await request.formData();
     let message = data.get("prompt")! as string;
     const simple = data.get("simple") as string | undefined;
-    if (simple) message += " use simple and concise language"
+    if (simple) message += " USE SIMPLE AND CONCISE LANGUAGE"
     const id = Number(params.id);
     const chat = await getChatById(id);
     const { sources } = await messagePromptFlow(message, chat!);

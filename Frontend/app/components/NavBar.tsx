@@ -15,20 +15,20 @@ export function NavBar({ chats }: NavBarProps) {
                 <Await resolve={chats}>
                     {chats => chats.map(chat => (
                         <div key={chat.id} className="full flex flex-row gap-1 py-2 pl-5 items-center group hover:brightness-75 cursor-pointer rounded">
-                        <NavLink
-                            unstable_viewTransition
-                            className="grow text-nowrap overflow-x-clip"
-                            to={{
-                                pathname: `/chat/${chat.id}`,
-                                search: (function () {
-                                    if (typeof document !== "undefined") return location.search;
-                                })()
-                            }}
-                        >
-                            Chat {chat.id}
-                        </NavLink>
+                            <NavLink
+                                unstable_viewTransition
+                                className="grow text-nowrap overflow-x-clip"
+                                to={{
+                                    pathname: `/chat/${chat.id}`,
+                                    search: (function () {
+                                        if (typeof document !== "undefined") return location.search;
+                                    })()
+                                }}
+                            >
+                                Chat {chat.id}
+                            </NavLink>
                             <Link to={`/chat/${chat.id}/delete`} className={"pr-5 invisible group-hover:visible"}>
-                                <img alt={"x"} src={xIcon} className={"w-full h-full"}/>
+                                <img alt={"x"} src={xIcon} className={"w-full h-full"} />
                             </Link>
                         </div>
                     ))}
@@ -44,7 +44,7 @@ function MessageSkeleton() {
 
 export const NavBarSkeleton = ({ children }: { children?: ReactNode }) => {
     const [searchParams, setSearchParams] = useSearchParams();
-    const [isOpen, setIsOpen] = useState((searchParams.get("open")==="true"));
+    const [isOpen, setIsOpen] = useState((searchParams.get("open") === "true"));
 
     useEffect(() => {
         setSearchParams(prev => ({ open: isOpen, ...prev }));
@@ -67,8 +67,11 @@ export const NavBarSkeleton = ({ children }: { children?: ReactNode }) => {
                     <img alt="menu" src={menuIcon} />
                 </button>
             </div>
-            <div className="hover-animation px-5 pb-4 w-full">
-                <div className="flex items-center rounded-full bg-orange text-slate-100 p-1 hover:bg-orange-400">
+            <div className="overflow-auto flex flex-col grow gap-3 w-full">
+                {isOpen && children}
+            </div>
+            <div className="hover-animation px-5 py-4 w-full">
+                <div className="flex items-center rounded-full bg-orange text-slate-900 p-1 hover:bg-orange-400">
                     <Link
                         to={{
                             pathname: "/chat/new",
@@ -81,15 +84,12 @@ export const NavBarSkeleton = ({ children }: { children?: ReactNode }) => {
                     >
                         <img alt="add" src={addIcon} className="m-3" style={{ minWidth: "32px" }} />
                         {isOpen && (
-                            <span className="text-nowrap text-xl" style={{minWidth:"150px"}}>
+                            <span className="text-nowrap text-xl" style={{ minWidth: "150px" }}>
                                 New Chat
                             </span>
                         )}
                     </Link>
                 </div>
-            </div>
-            <div className="overflow-auto flex flex-col gap-3 w-full">
-                {isOpen && children}
             </div>
         </motion.nav>
     );
