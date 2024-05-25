@@ -1,0 +1,2150 @@
+Adept ARCL Reference Guide
+ThisisaPDF/printversion ofthe AdeptARCL Reference Guide.ATable ofContentsis
+providedsothatyou can locate the desiredtopics.Because the AdeptARCL Reference Guide
+wasdesignedfor online viewing,there may be slightformattinganomaliesin the PDF/print
+version.Additionally,linkstoexternaldocumentswillnotworkin the PDF file.
+NOTE:PleaseseetheReadMefile,whichisincludedwithyourAdeptMotivitysoftware,foradescription
+ofanyrecentchanges.
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page1
+
+Copyright Notice
+TheinformationcontainedhereinisthepropertyofAdeptTechnology,Inc.,andshallnotbereproducedin
+wholeorinpartwithoutpriorwrittenapprovalofAdeptTechnology,Inc.Theinformationhereinissubject
+tochangewithoutnoticeandshouldnotbeconstruedasacommitmentbyAdeptTechnology,Inc.Thedoc-
+umentationisperiodicallyreviewedandrevised.
+AdeptTechnology,Inc.,assumesnoresponsibilityforanyerrorsoromissionsinthedocumentation.Critical
+evaluationofthedocumentationbytheuseriswelcomed.Yourcommentsassistusinpreparationof
+futuredocumentation.Pleasesubmityourcommentsto:techpubs@adept.com.
+Copyright(cid:211) 2006-2016byAdeptTechnology,Inc.Allrightsreserved.
+Adept,theAdeptlogo,theAdeptTechnologylogo,AdeptVision,AIM,Blox,Bloxview,FireBlox,Fireview,
+MetaControls,MetaControls,Metawire,Motivity,SoftMachines,andVisualMachinesareregisteredtrade-
+marksofAdeptTechnology,Inc.
+BrainonBoardisaregisteredtrademarkofAdeptTechnology,Inc.inGermany.
+AdeptLynx,AdeptEnterpriseManager1100,ARAM,ARCL,MobileEyes,MobilePlanner,andSetNetGoare
+trademarksofAdeptTechnology,Inc.
+Anytrademarksfromothercompaniesusedinthispublication
+arethepropertyofthoserespectivecompanies.
+CreatedintheUnitedStatesofAmerica
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page2
+
+Table Of Contents
+Introduction to ARCL 25
+Version Requirements 26
+HowDoI Begin 27
+Related Manuals 28
+HowCan I Get Help? 29
+Set ARCL Parameters in MobilePlanner 30
+Accessing theConfiguration Options 31
+Understanding theConfiguration Parameters 37
+Outgoing ARCL Connection Setup Parameters 38
+Outgoing ARCL CommandsParameters 39
+Outgoing EnterpriseARCL Connection Setup Parameters 40
+Outgoing EnterpriseARCL CommandsParameters 41
+SeeAlso... 41
+Connect to ARCL Using a Telnet Client 42
+Setting theConnection Parameters 43
+Connecting toARCL 44
+SeeAlso... 45
+Using the ARCL Commands 46
+SeeAlso... 46
+Understanding theCommands 47
+DocumentConventions 47
+CommandNotes 48
+DataTypes 48
+StatusandErrorMessages 50
+StatusConditions 51
+Using ARCL Variables 55
+Using Tasksand Macros 56
+ForeverTasks 57
+Using Configuration Commands 58
+Using theQueuing Commands 60
+Working With Payloads 61
+Creating aMap 63
+Tracking Sectors 64
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page3
+
+Navigating and Localizing 65
+Using RangeDevicesand Custom Sensors 66
+Monitoring theI/OPorts 68
+ARCL Command Reference 70
+SeeAlso... 73
+analogInputList Command 74
+Syntax 74
+UsageConsiderations 74
+Parameters 74
+Responses 74
+Details 74
+Examples 74
+RelatedCommands 74
+analogInputQueryRawCommand 75
+Syntax 75
+UsageConsiderations 75
+Parameters 75
+Responses 75
+Details 75
+RelatedCommands 75
+analogInputQueryVoltageCommand 76
+Syntax 76
+UsageConsiderations 76
+Parameters 76
+Responses 76
+Details 76
+RelatedCommands 76
+applicationFaultClear Command 77
+Syntax 77
+UsageConsiderations 77
+Parameters 77
+Responses 77
+Details 77
+Examples 77
+RelatedCommands 78
+applicationFaultQueryCommand 79
+Syntax 79
+UsageConsiderations 79
+Parameters 79
+Responses 79
+Details 79
+Examples 79
+RelatedCommands 79
+applicationFaultSet Command 81
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page4
+
+Syntax 81
+UsageConsiderations 81
+Parameters 81
+Responses 81
+Details 81
+Examples 81
+RelatedCommands 82
+arclSendText Command 83
+Syntax 83
+UsageConsiderations 83
+ARAMSettings 83
+Parameters 83
+Responses 83
+Details 83
+Example 83
+clearAllObstaclesCommand 84
+Syntax 84
+UsageConsiderations 84
+Parameters 84
+Responses 84
+Details 84
+Examples 84
+configAdd Command 85
+Syntax 85
+UsageConsiderations 85
+ARAMSettings 85
+Parameters 85
+Responses 85
+Details 85
+Examples 85
+RelatedCommands 86
+configParseCommand 87
+Syntax 87
+UsageConsiderations 87
+ARAMSettings 87
+Parameters 87
+Responses 87
+Details 87
+Examples 87
+RelatedCommands 87
+configStart Command 89
+Syntax 89
+UsageConsiderations 89
+ARAMSettings 89
+Parameters 89
+Responses 89
+Details 89
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page5
+
+Examples 89
+RelatedCommands 90
+connectOutgoing Command 91
+Syntax 91
+UsageConsiderations 91
+Parameters 91
+Responses 91
+Details 91
+Examples 91
+createInfoCommand 92
+Syntax 92
+UsageConsiderations 92
+Parameters 92
+Responses 92
+Details 92
+Examples 92
+RelatedCommands 93
+customReadingAddAbsoluteCommand 94
+Syntax 94
+UsageConsiderations 94
+ARAMSettings 94
+Parameters 94
+Responses 94
+Details 94
+Examples 95
+RelatedCommands 95
+customReadingAdd Command 96
+Syntax 96
+UsageConsiderations 96
+ARAMSettings 96
+Parameters 96
+Responses 96
+Details 96
+Examples 97
+RelatedCommands 97
+customReadingsClear Command 98
+Syntax 98
+UsageConsiderations 98
+ARAMSettings 98
+Parameters 98
+Responses 98
+Details 98
+Examples 98
+RelatedCommands 99
+distanceBetween Command 100
+Syntax 100
+UsageConsiderations 100
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page6
+
+Parameters 100
+Responses 100
+Details 100
+Examples 100
+RelatedCommandss 101
+distanceFromHereCommand 102
+Syntax 102
+UsageConsiderations 102
+Parameters 102
+Responses 102
+Details 102
+Examples 102
+RelatedCommands 103
+dockCommand 104
+Syntax 104
+UsageConsiderations 104
+Parameters 104
+Responses 104
+Details 104
+Examples 104
+RelatedCommands 104
+doTaskCommand 105
+Syntax 105
+UsageConsiderations 105
+Parameters 105
+Responses 105
+Details 105
+Examples 105
+RelatedCommands 106
+doTaskInstant Command 107
+Syntax 107
+UsageConsiderations 107
+Parameters 107
+Responses 107
+Details 107
+RelatedCommands 107
+echoCommand 109
+Syntax 109
+UsageConsiderations 109
+Parameters 109
+Responses 109
+Examples 109
+enableMotorsCommand 110
+Syntax 110
+UsageConsiderations 110
+Parameters 110
+Responses 110
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page7
+
+Examples 110
+RelatedCommands 110
+etaRequest Command 111
+Syntax 111
+UsageConsiderations 111
+Parameters 111
+Responses 111
+Details 111
+Examples 111
+RelatedCommands 111
+executeMacroCommand 112
+Syntax 112
+UsageConsiderations 112
+Parameters 112
+Responses 112
+Details 112
+Example 112
+RelatedCommands 113
+faultsGet Command 114
+Syntax 114
+UsageConsiderations 114
+Parameters 114
+Responses 114
+Details 114
+Examples 114
+RelatedCommands 115
+followCommand 116
+Syntax 116
+UsageConsiderations 116
+Parameters 116
+Responses 116
+Details 116
+Examples 116
+RelatedCommands 116
+getConfigSectionInfoCommand 117
+Syntax 117
+UsageConsiderations 117
+ARAMSettings 117
+Parameters 117
+Responses 117
+Details 117
+Examples 118
+RelatedCommands 118
+getConfigSectionList Command 119
+Syntax 119
+UsageConsiderations 119
+ARAMSettings 119
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page8
+
+Parameters 119
+Value 119
+Details 119
+Examples 119
+RelatedCommands 120
+getConfigSectionValuesCommand 121
+Syntax 121
+UsageConsiderations 121
+ARAMSettings 121
+Parameters 121
+Responses 121
+Details 121
+Examples 121
+RelatedCommands 122
+getDateTimeCommand 123
+Syntax 123
+UsageConsiderations 123
+Parameters 123
+Examples 123
+getGoalsCommand 124
+Syntax 124
+UsageConsiderations 124
+Parameters 124
+Responses 124
+Examples 124
+RelatedCommands 124
+getInfoCommand 126
+Syntax 126
+UsageConsiderations 126
+Parameters 126
+Responses 126
+Details 126
+Examples 126
+RelatedCommands 126
+getInfoList Command 128
+Syntax 128
+UsageConsiderations 128
+Parameters 128
+Responses 128
+Details 128
+Examples 128
+RelatedCommands 129
+getMacrosCommand 130
+Syntax 130
+UsageConsiderations 130
+Parameters 130
+Responses 130
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page9
+
+Details 130
+Examples 130
+RelatedCommands 130
+getPayload Command 132
+Syntax 132
+UsageConsiderations 132
+Parameters 132
+Responses 132
+Details 132
+Examples 132
+RelatedCommands 132
+getPrecedenceCommand 133
+Syntax 133
+UsageConsiderations 133
+Parameters 133
+Responses 133
+Details 133
+Examples 133
+RelatedCommands 133
+getRoutesCommand 134
+Syntax 134
+UsageConsiderations 134
+Parameters 134
+Responses 134
+Examples 134
+RelatedCommands 134
+gotoCommand 135
+Syntax 135
+UsageConsiderations 135
+Parameters 135
+Responses 135
+Details 135
+Examples 135
+RelatedCommands 136
+gotoPoint Command 137
+Syntax 137
+UsageConsiderations 137
+Parameters 137
+Responses 137
+Details 137
+Examples 137
+RelatedCommands 138
+gotoRouteGoal Command 139
+Syntax 139
+UsageConsiderations 139
+Parameters 139
+Responses 139
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page10
+
+Details 139
+Examples 139
+RelatedCommands 140
+help Command 141
+Syntax 141
+UsageConsiderations 141
+Parameters 141
+Details 141
+Examples 141
+inputList Command 142
+Syntax 142
+UsageConsiderations 142
+Parameters 142
+Responses 142
+Details 142
+Examples 142
+RelatedCommands 142
+inputQueryCommand 144
+Syntax 144
+UsageConsiderations 144
+Parameters 144
+Responses 144
+Details 144
+Examples 144
+RelatedCommands 144
+listAdd Command 145
+Syntax 145
+UsageConsiderations 145
+Parameters 145
+Responses 145
+Details 145
+Examples 145
+RelatedCommands 146
+listExecuteCommand 147
+Syntax 147
+UsageConsiderations 147
+Parameters 147
+Responses 147
+Details 147
+Examples 147
+RelatedCommands 148
+listStart Command 149
+Syntax 149
+UsageConsiderations 149
+Parameters 149
+Responses 149
+Details 149
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page11
+
+Examples 149
+RelatedCommands 150
+localizeToPoint Command 151
+Syntax 151
+UsageConsiderations 151
+Parameters 151
+Responses 151
+Details 151
+Examples 151
+RelatedCommands 152
+log Command 153
+Syntax 153
+UsageConsiderations 153
+Parameters 153
+Responses 153
+Details 153
+Examples 153
+RelatedCommands 154
+mapObjectInfoCommand 155
+Syntax 155
+UsageConsiderations 155
+Parameters 155
+Responses 155
+Details 155
+Examples 156
+RelatedCommands 156
+mapObjectList Command 157
+Syntax 157
+UsageConsiderations 157
+Parameters 157
+Responses 157
+Details 157
+Examples 158
+RelatedCommands 158
+mapObjectTypeInfoCommand 159
+Syntax 159
+UsageConsiderations 159
+Parameters 159
+Responses 159
+Details 159
+Examples 160
+RelatedCommands 160
+mapObjectTypeList Command 161
+Syntax 161
+UsageConsiderations 161
+Parameters 161
+Responses 161
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page12
+
+Details 161
+Examples 162
+RelatedCommands 162
+newConfigParam Command 163
+Syntax 163
+UsageConsiderations 163
+ARAMSettings 163
+Parameters 163
+Responses 164
+Details 164
+Examples 164
+RelatedCommands 164
+newConfigSectionComment Command 165
+Syntax 165
+UsageConsiderations 165
+ARAMSettings 165
+Parameters 165
+Responses 165
+Details 165
+Examples 165
+RelatedCommands 166
+odometer Command 167
+Syntax 167
+UsageConsiderations 167
+Parameters 167
+Responses 167
+Details 167
+Examples 167
+RelatedCommands 167
+odometerReset Command 168
+Syntax 168
+UsageConsiderations 168
+Parameters 168
+Responses 168
+Details 168
+Examples 168
+RelatedCommands 168
+oneLineStatusCommand 169
+Syntax 169
+UsageConsiderations 169
+Parameters 169
+Responses 169
+Details 169
+Examples 169
+RelatedCommands 169
+outputList Command 171
+Syntax 171
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page13
+
+UsageConsiderations 171
+Parameters 171
+Responses 171
+Details 171
+Examples 171
+RelatedCommands 171
+outputOff Command 173
+Syntax 173
+UsageConsiderations 173
+Parameters 173
+Responses 173
+Details 173
+Examples 173
+RelatedCommands 173
+outputOn Command 174
+Syntax 174
+UsageConsiderations 174
+Parameters 174
+Responses 174
+Details 174
+Examples 174
+RelatedCommands 174
+outputQueryCommand 175
+Syntax 175
+UsageConsiderations 175
+Parameters 175
+Responses 175
+Details 175
+Examples 175
+RelatedCommands 175
+patrol Command 177
+Syntax 177
+UsageConsiderations 177
+Parameters 177
+Responses 177
+Details 177
+Examples 177
+RelatedCommands 177
+patrolOnceCommand 179
+Syntax 179
+UsageConsiderations 179
+Parameters 179
+Responses 179
+Details 179
+Examples 179
+RelatedCommands 179
+patrolResumeCommand 181
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page14
+
+Syntax 181
+UsageConsiderations 181
+Parameters 181
+Responses 181
+Details 181
+Examples 181
+RelatedCommands 182
+pauseTaskCancel Command 183
+Syntax 183
+UsageConsiderations 183
+Parameters 183
+Responses 183
+Details 183
+Examples 183
+RelatedCommands 184
+pauseTaskStateCommand 185
+Syntax 185
+UsageConsiderations 185
+Parameters 185
+Responses 185
+Examples 185
+RelatedCommands 185
+payloadQueryCommand (shortcut:pq) 187
+Syntax 187
+UsageConsiderations 187
+Parameters 187
+Responses 187
+Details 187
+Examples 188
+RelatedCommands 189
+payloadQueryLocal Command (shortcut:pql) 190
+Syntax 190
+UsageConsiderations 190
+Parameters 190
+Responses 190
+Details 190
+Examples 190
+RelatedCommands 191
+payloadRemoveCommand (shortcut:pr) 192
+Syntax 192
+UsageConsiderations 192
+Parameters 192
+Responses 192
+Details 192
+Examples 192
+RelatedCommands 192
+payloadSet Command (shortcut:ps) 194
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page15
+
+Syntax 194
+UsageConsiderations 194
+Parameters 194
+Responses 194
+Details 194
+Examples 194
+RelatedCommands 195
+payloadSlotCount Command (shortcut:psc) 196
+Syntax 196
+UsageConsiderations 196
+Parameters 196
+Responses 196
+Details 196
+Examples 196
+RelatedCommands 197
+payloadSlotCountLocal Command (shortcut:pscl) 198
+Syntax 198
+UsageConsiderations 198
+Parameters 198
+Examples 198
+RelatedCommands 198
+playCommand 199
+Syntax 199
+UsageConsiderations 199
+Parameters 199
+Responses 199
+Details 199
+Examples 200
+RelatedCommands 200
+popupSimpleCommand 201
+Syntax 201
+UsageConsiderations 201
+Parameters 201
+Responses 201
+Details 201
+Examples 201
+RelatedCommands 202
+queryDockStatusCommand 203
+Syntax 203
+UsageConsiderations 203
+Parameters 203
+Responses 203
+Details 203
+Examples 203
+RelatedCommands 203
+queryFaultsCommand (shortcut:qf) 204
+Syntax 204
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page16
+
+UsageConsiderations 204
+Parameter 204
+Responses 204
+Details 204
+Example 204
+RelatedCommands 206
+queryMotorsCommand 207
+Syntax 207
+UsageConsiderations 207
+Parameters 207
+Responses 207
+Details 207
+Examples 207
+RelatedCommands 208
+queueCancel Command (shortcut:qc) 209
+Syntax 209
+UsageConsiderations 209
+Parameters 209
+Responses 209
+Details 210
+Examples 210
+RelatedCommands 211
+queueCancelLocal Command (shortcut: qcl) 212
+Syntax 212
+UsageConsiderations 212
+Parameters 212
+Responses 213
+Details 213
+Example 213
+RelatedCommands 214
+queueDropoff Command (shortcut:qd) 215
+Syntax 215
+UsageConsiderations 215
+ARAMSettings 215
+Parameters 215
+Responses 215
+Details 216
+Examples 216
+RelatedCommands 216
+queueModifyCommand (shortcut:qmod) 218
+Syntax 218
+UsageConsiderations 218
+ARAMSettings 218
+Parameters 218
+Responses 219
+Details 220
+Examples 220
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page17
+
+RelatedCommands 222
+queueModifyLocal Command (shortcut:qmodl) 224
+Syntax 224
+UsageConsiderations 224
+ARAMSettings 224
+Parameters 224
+Responses 225
+Details 225
+Examples 226
+RelatedCommands 227
+queueMulti Command (shortcut:qm) 229
+Syntax 229
+UsageConsiderations 229
+ARAMSettings 229
+Parameters 229
+Responses 230
+Details 231
+Examples 231
+RelatedCommands 232
+queuePickup Command (shortcut:qp) 233
+Syntax 233
+UsageConsiderations 233
+ARAMSettings 233
+Parameters 233
+Responses 233
+Details 234
+Examples 234
+RelatedCommands 235
+queuePickupDropoff Command (shortcut:qpd) 236
+Syntax 236
+UsageConsiderations 236
+Parameters 236
+Responses 236
+Details 237
+Examples 237
+RelatedCommands 240
+queueQueryCommand (shortcut:qq) 241
+Syntax 241
+UsageConsiderations 241
+Parameters 241
+Responses 241
+Details 242
+Examples 242
+RelatedCommands 242
+queueQueryLocal Command (shortcut:qql) 244
+Syntax 244
+UsageConsiderations 244
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page18
+
+Parameters 244
+Responses 245
+Details 245
+Examples 245
+RelatedCommands 245
+queueShowCommand (shortcut:qs) 247
+Syntax 247
+UsageConsiderations 247
+Parameters 247
+Responses 247
+Details 247
+Examples 248
+RelatedCommands 248
+queueShowCompleted Command (shortcut:qsc) 249
+Syntax 249
+UsageConsiderations 249
+Parameters 249
+Returns 249
+Details 249
+Examples 250
+RelatedCommands 250
+queueShowRobot Command (shortcut: qsr) 251
+Syntax 251
+UsageConsiderations 251
+Parameters 251
+Responses 251
+Details 251
+Examples 252
+RelatedCommands 252
+queueShowRobotLocal Command (shortcut:qsrl) 253
+Syntax 253
+UsageConsiderations 253
+Parameters 253
+Details 253
+Examples 253
+RelatedCommands 253
+quit Command 254
+Syntax 254
+UsageConsiderations 254
+Parameters 254
+Responses 254
+Details 254
+Examples 254
+RelatedCommands 254
+rangeDeviceGetCumulativeCommand 255
+Syntax 255
+UsageConsiderations 255
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page19
+
+ARAMSettings 255
+Parameters 255
+Responses 255
+Details 255
+Examples 256
+RelatedCommands 256
+rangeDeviceGetCurrent Command 257
+Syntax 257
+UsageConsiderations 257
+ARAMSettings 257
+Parameters 257
+Responses 257
+Details 257
+Examples 257
+RelatedCommands 258
+rangeDeviceList Command 259
+Syntax 259
+UsageConsiderations 259
+ARAMSettings 259
+Parameters 259
+Responses 259
+Details 259
+Examples 259
+RelatedCommands 260
+sayCommand 261
+Syntax 261
+UsageConsiderations 261
+Parameters 261
+Responses 261
+Details 261
+Examples 261
+RelatedCommands 261
+scanAddGoal Command 262
+Syntax 262
+UsageConsiderations 262
+Parameters 262
+Responses 262
+Details 262
+Examples 262
+RelatedCommands 262
+scanAddInfoCommand 264
+Syntax 264
+UsageConsiderations 264
+ARAMSettings 264
+Parameters 264
+Responses 266
+Details 266
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page20
+
+Examples 266
+RelatedCommands 266
+scanAddTag Command 267
+Syntax 267
+UsageConsiderations 267
+ARAMSettings 267
+Parameters 267
+Responses 267
+Details 267
+Examples 268
+RelatedCommands 268
+scanStart Command 269
+Syntax 269
+UsageConsiderations 269
+Parameters 269
+Responses 269
+Details 269
+Examples 269
+RelatedCommands 269
+scanStop Command 271
+Syntax 271
+UsageConsiderations 271
+Parameters 271
+Responses 271
+Examples 271
+RelatedCommands 271
+setPayload Command 272
+Syntax 272
+UsageConsiderations 272
+Parameters 272
+Responses 272
+Details 272
+Examples 272
+RelatedCommands 272
+setPrecedenceCommand 274
+Syntax 274
+UsageConsiderations 274
+Parameters 274
+Responses 274
+Details 274
+Examples 274
+RelatedCommands 274
+shutdown Command 275
+Syntax 275
+UsageConsiderations 275
+Parameters 275
+Responses 275
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page21
+
+Details 275
+Examples 275
+RelatedCommands 275
+statusCommand 276
+Syntax 276
+UsageConsiderations 276
+Parameters 276
+Responses 276
+Details 276
+Examples 276
+RelatedCommands 276
+stop Command 278
+Syntax 278
+UsageConsiderations 278
+Parameters 278
+Responses 278
+Examples 278
+RelatedCommands 278
+trackSectorsCommand 279
+Syntax 279
+UsageConsiderations 279
+ARAMSettings 279
+Parameters 279
+Responses 279
+Details 279
+Examples 280
+RelatedCommands 281
+trackSectorsAtGoal Command 282
+Syntax 282
+UsageConsiderations 282
+ARAMSettings 282
+Parameters 282
+Responses 282
+Details 282
+Examples 283
+RelatedCommands 284
+trackSectorsAtPoint Command 285
+Syntax 285
+UsageConsiderations 285
+ARAMSettings 285
+Parameters 285
+Responses 285
+Details 285
+Examples 286
+RelatedCommands 287
+trackSectorsPath Command 288
+Syntax 288
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page22
+
+UsageConsiderations 288
+ARAMSettings 288
+Parameters 288
+Responses 288
+Details 288
+Examples 289
+RelatedCommands 290
+undockCommand 291
+Syntax 291
+UsageConsiderations 291
+Parameters 291
+Responses 291
+Details 291
+Examples 291
+RelatedCommands 291
+updateInfoCommand 293
+Syntax 293
+UsageConsiderations 293
+Parameters 293
+Responses 293
+Details 293
+Examples 293
+RelatedCommands 294
+waitTaskCancel Command 295
+Syntax 295
+UsageConsiderations 295
+Parameters 295
+Responses 295
+Examples 295
+RelatedCommands 296
+waitTaskStateCommand 297
+Syntax 297
+UsageConsiderations 297
+Parameters 297
+Responses 297
+Examples 297
+RelatedCommands 297
+ARCL Server Messages 299
+Robot Fault Messages 300
+SeeAlso... 300
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page23
+
+
+
+IntroductiontoARCL
+Introduction to ARCL
+TheAdvancedRoboticsCommandLanguage(ARCL)isasimple,text-based,command-and-responseoper-
+atinglanguageforintegratingafleetofAdeptmobilerobotswithanexternalautomationsystem.
+ARCLallowsyoutooperateandmonitorthemobilerobot,itsaccessoriesanditspayloaddevicesoverthe
+network;itisintendedforautomatingyourmobilerobots.Fordebuggingpurposes,youcanuseTelnetor
+PuTTYtoaccesstheARCLcommandsfromacommandprompt.
+ARCLallowsyoutosubmitjobstotheEnterpriseManager,andmonitorthejobstatusfromstarttofinish.
+Italsoallowsyoutomonitorpayloadinformation,ifreported,bytherobotsinthefleet.
+TheEnterpriseManager(EM) versionofARCLisforusewiththeEnterpriseManagersoftwareandappli-
+ance.Thishardwareandsoftwarecombinationhasbeenspeciallydesignedandconfiguredtomanagea
+fleetofrobotsoperatinginafacility.Therefore,itusesaminimalARCLcommandset,becauseallofthecrit-
+icalworkisbeinghandleddirectlybytheapplianceandEnterpriseManagersoftware.
+Thissectiondiscussesthefollowingtopics:
+Version Requirements 26
+How DoI Begin 27
+RelatedManuals 28
+How Can I GetHelp? 29
+FormoreinformationonusingtheAdeptMotivitysoftware,refertotheAdeptMotivitySoftwareUser's
+Guide.
+See Also...
+IntroductiontoARCLonpage25
+EnableOptionsin
+SetARCLParametersinMobilePlanneronpage30
+ConnecttoARCLUsingaTelnetClientonpage42
+UsingtheARCLCommandsonpage46
+ARCLCommandReferenceonpage70
+ARCLServerMessagesonpage299
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page25
+
+VersionRequirements
+Version Requirements
+ThisdocumentpertainstoARAMversion4.6andlater.
+Ifyouneedassistance,seeHowCanIGetHelp?onpage29.
+See Also...
+HowDoIBeginonpage27
+RelatedManualsonpage28
+HowCanIGetHelp?onpage29
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page26
+
+HowDoIBegin
+How Do I Begin
+BeforeyoucanaccessARCL,youmustcompletethefollowingsteps:
+1. SetARCLParametersinMobilePlanner
+DefinetheARCLserveraddress,portnumberandpasswordparametersinMobilePlanner,andcon-
+figureotherARCLparameters.Theserverportwillnotopenwithoutapassword;thereforeyou
+mustconfigureapasswordbeforeyoucanconnecttoARCL.Fordetails,seeSetARCLParametersin
+MobilePlanneronpage30.
+2. ConnecttoARCLUsingaTelnetClient
+UsingaTelnetclient,connecttoARCLtoaccessandruntheARCLcommandsontheMotivityplat-
+form.Fordetails,seeConnecttoARCLUsingaTelnetClientonpage42.
+Afteryou'vesetupandestablishedaconnectiontotheARCLserver,youcanstartusingtheARCLcom-
+mandstooperateandmonitortheroboticplatform,itsaccessoriesanditspayloaddevicesoverthenet-
+worksubmitandmonitorjobsthatwillbeperformedbythefleet.Youcandoallofthiswithorwithout
+MobilePlanner.Formoredetails,seeUsingtheARCLCommandsonpage46.
+See Also...
+VersionRequirementsonpage26
+HowDoIBeginonpage27
+RelatedManualsonpage28
+HowCanIGetHelp?onpage29
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page27
+
+| Manual | Description |
+| --- | --- |
+| AdeptRobotSafetyGuide | DescribessafetyinformationforAdeptrobots. |
+| AdeptMotivityUser's
+Guide | DescribestheAdeptMotivitysoftware,includingSetNetGo,
+MobileEyes,andMobilePlanner. |
+| AdeptLynxPlatform
+User'sGuide | Describestheinstallation,start-up,operation,andmaintenanceof
+theAdeptmobilerobotbase. |
+| AdeptLynxEnterprise
+Manager1100User's
+Guide | DescribestheinstallationandoperationoftheEnterpriseManager
+1100applianceandtheEnterpriseManagersoftware. |
+| AdeptSmartFleet
+EX ApplianceUser'sGuide | CoversthelegacyAdeptEnterpriseManagersystem,whichranon
+anAdeptSmartFleetEXAppliance,formanagingafleetofLynx
+AIVs. |
+
+HowCanIGetHelp?
+How Can I Get Help?
+FordetailsongettingassistancewithyourAdeptsoftwareorhardware,youcanaccessthefollowing
+informationsourcesontheAdeptcorporatewebsite:
+Forcontactinformation:http://www.adept.com/contact/americas
+l
+Forproductsupportinformation:http://www.adept.com/support/service-and-support/main
+l
+Foruserdiscussions,support,andprogrammingexamples:http://www.adept.com/forum/
+l
+ForfurtherinformationaboutOmronAdeptTechnologies,Inc.:http://www.adept.com
+l
+See Also...
+VersionRequirementsonpage26
+HowDoIBeginonpage27
+RelatedManualsonpage28
+HowCanIGetHelp?onpage29
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page29
+
+SetARCLParametersinMobilePlanner
+Set ARCL Parameters in MobilePlanner
+ThissectiondescribeshowtoaccesstheconfigurationitemsintheMobilePlannersoftware.Itdescribes
+thefollowing:
+AccessingtheConfigurationOptionsonpage31
+l
+UnderstandingtheConfigurationParametersonpage37
+l
+OutgoingARCLCommandsParametersonpage39
+l
+SetARCLParametersinMobilePlanneronpage30
+l
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page30
+
+AccessingtheConfigurationOptions
+Accessing the Configuration Options
+ThesesectionsallowyoutoaccessconfigurationparametersthatcontroltheARCLserveranditsinter-
+actionwithconnectedclients.
+CAUTION:Theserverportwillnotopenwithoutapassword.Therefore,youmustconfigureapassword
+beforeyoucanconnecttoARCL.
+ToaccessARCL configuration optionsfrom MobilePlanner:
+1. OpentheMobilePlannersoftware,version4.0orlater,andconnecttothemobilerobot.Refertothe
+AdeptMotivityUser'sGuidefordetailsoninstallingandstartingMobilePlanner.
+2. FromtheMobilePlanner>Config,selecttheRobotInterfacetab.
+3. SelectARCLserversetupfromtheSections:column.Theseparametersallowyoutocontrolthecli-
+ent-serverconnectionbetweenanoffboardclientprocess(suchasTelnetorPuTTY)andARCL.The
+ARCLserversetupparametersareshowninthefollowingfigure.
+IncomingconnectionsrefertoaclientinitiatingtheconnectiontotheEnterpriseManagerorarobot.
+Multiplesimultaneousconnectionsareallowedandsupported.
+NOTE: ARCLserversetupletsyouconfiguretheportforincomingconnections.Thisdoesnot
+affectoutgoingconnections.
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page31
+
+AccessingtheConfigurationOptions
+ARCL ServerSetupParameters
+Formoreinformationonusingaclient(likeTelnetorPuTTY),seeConnecttoARCLUsingaTelnetCli-
+entonpage42.
+4. SelectOutgoingARCLcommandsfromtheSections:columntodisplaytheparametersthatallow
+youtoconfigurecommandsthatareautomaticallyexecutedontheconnectionindicatedintheOut-
+goingARCLconnectionsetup.Theparametersareshowninthefollowingfigure.Formoredetails,
+seeOutgoingARCLCommandsParametersonpage39.
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page32
+
+AccessingtheConfigurationOptions
+OutgoingARCL Commands
+5. SelectOutgoingARCLconnectionsetupfromtheSections:columntodisplaytheparametersthat
+allowyoutosenddatafromtherobotusingARCLcommands,intendedtoconnecttotheapplication
+payload.Theparametersareshowninthefollowingfigure.Formoredetails,refertoOutgoingARCL
+ConnectionSetupParametersonpage38.
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page33
+
+AccessingtheConfigurationOptions
+OutgoingARCL ConnectionSetup
+6. Aftertheconfigurationoptionsareset,clicktheSavebuttononthetoolbartosavethechangesto
+theConfigurationfile.Changesdonottakeeffectuntil:therobotisidleandstationary;theCon-
+figurationchangesaresaved.
+7. SelectOutgoingEnterpriseARCLcommandsfromtheSections:columntodisplaytheparameters
+thatallowyoutoconfigurecommandsthatareautomaticallyexecutedontheconnectionindicated
+intheOutgoingEnterpriseARCLconnectionsetup.Formoredetails,seeOutgoingEnterpriseARCL
+CommandsParametersonpage41.
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page34
+
+AccessingtheConfigurationOptions
+OutgoingEnterpriseARCL Commands
+8. SelectOutgoingEnterpriseARCLconnectionsetupfromtheSections:columntodisplaythepara-
+metersthatallowyoutosenddatafromtheEnterpriseManagerusingARCLcommands,intendedto
+connecttothefacilityWMS/MES.Formoredetails,refertoOutgoingEnterpriseARCLConnection
+SetupParametersonpage40.
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page35
+
+AccessingtheConfigurationOptions
+OutgoingEnterpriseARCL ConnectionSetup
+9. Aftertheconfigurationoptionsareset,clicktheSavebuttononthetoolbartosavethechangesto
+theConfigurationfile.Changesdonottakeeffectuntil:therobotisidleandstationary;theCon-
+figurationchangesaresaved.
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page36
+
+UnderstandingtheConfigurationParameters
+Understanding the Configuration Parameters
+Theconfigurationparametersaregroupedbyfunction-eachfunctionalgroupisaccessedfromthealpha-
+beticallistintheleftpane.Thecorrespondingconfigurationparametersarelistedinatabularformatonthe
+configurationpages,asshowninthepreviousfigures.Theparametersareorganizedalphabetically.You
+cansortthelistinascendingordescendingorderbyname,value,min,ormax.
+Eachparameterhasadescriptionthatbrieflydescribesthefunctionoftheparameter.Theselectedpara-
+meter'shelpdescriptionislocatedintheDescriptioncolumnand,optionally,atthebottomofthewindow
+whentheentirecontentscan'tbeshownintheDescriptioncolumn.Foranexample,seethefollowingfig-
+ure.
+ParameterHelp
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page37
+
+OutgoingARCLConnectionSetupParameters
+Outgoing ARCL Connection Setup Parameters
+TheOutgoingARCLconnectionsetupparametersareusedtoinstructtheAIVtoinitiateanoutgoingARCL
+TCPconnectiontoanotherdeviceonthenetwork.Thisapproachcanbeusedinlieuofrequiringthatthe
+otherdeviceinitiateanincomingconnectiontotheAIV.
+Inordertousethisfeature,theOutgoingHostnameneedstobesettoastringandtheOutgoingPortneeds
+tobeanon-zeronumber.
+UseoftheoutgoingARCLconnections:
+TheoutgoingARCLconnectioncanbeusedtoconnecttoapayloadontopoftheAIV.TheAIVcan
+l
+beconfiguredsothatitwillnotautonomouslydriveunlesstheoutgoingconnectionisalive,byset-
+tingtheOutgoingARCLConnectionsetup->RequireConnectionToPathPlanparametertoTrue.
+ThisisusefulwhenitwouldbeunsafefortheAIVtomoveatcertaintimes,suchaswhenanauto-
+matedloadorunloadisbeingperformed.Thepayloadisresponsibleforsignalingwhenitissafeto
+move,soiftheconnectionfromthepayloadtotheAIVislost,itwouldbeunsafefortheAIVto
+movewithoutknowingthepayloadstatus.
+Theremaybehand-shakinginvolvedbetweentheAIV'spayloadandthefactoryequipment,to
+determinewhentheloadorunloadiscomplete,makingitsafefortheAIVtomove.
+TheoutgoingconnectioncanbeusedtoautomaticallyexecutecertainARCLcommandsatspecified
+l
+intervals.Thiscanbeusefulforgatheringcertaininformationwithoutrequiringthattheapplic-
+ation,runningontheconnecteddevice,continuouslyrequestthedata.
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page38
+
+OutgoingARCLCommandsParameters
+Outgoing ARCL Commands Parameters
+TheOutgoingARCLcommandparametersallowyoutosetthemobilerobotuptoautomaticallygenerate
+ARCLcommandsatregularintervals.YoucansendoneormoreARCLcommands;tosendmultiplecom-
+mands,separateeachcommandwithapipecharactger(|).Forexample,settheOutGoingCommands1
+parameterto:
+doTaskInstant sayInstant "Enabling motors." | enableMotors
+ThensettheOutGoingCommands1Secondsparameterto:
+60
+Every60seconds,themobilerobotwillannounce,"Enablingmotors"andthenattempttoenablethe
+motors.
+TheoutgoinghostwillreceivetheARCLresponses:
+Completed doing instant task: sayInstant "Enabling motors."
+Thenitwillrespondwith,either:
+Motors enabled
+or
+Estop pressed, cannot enable motors
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page39
+
+OutgoingEnterpriseARCLConnectionSetupParameters
+Outgoing Enterprise ARCL Connection Setup Parameters
+TheOutgoingEnterpriseARCLconnectionsetupparametersareusedtoinstructtheEnterpriseManager
+toinitiateanoutgoingARCLTCPconnectiontoanotherdeviceonthenetwork.Thisapproachcanbeused
+inlieuofrequiringthattheotherdeviceinitiateanincomingconnectiontotheEnterpriseManager.
+Theremaybehand-shakinginvolvedbetweentheEnterpriseManagerandthefactoryequipment,to
+determinewhenthecommandshouldbeexecuted.
+Inordertousethisfeature,theOutgoingHostnameneedstobesettoastringandtheOutgoingPortneeds
+tobeanon-zeronumber.
+UseoftheoutgoingARCLconnections:
+TheoutgoingconnectioncanbeusedtoautomaticallyexecutecertainARCLcommandsatspecified
+l
+intervals.Thiscanbeusefulforgatheringcertaininformationwithoutrequiringthattheapplic-
+ation,runningontheconnecteddevice,continuouslyrequestthedata.
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page40
+
+OutgoingEnterpriseARCLCommandsParameters
+Outgoing Enterprise ARCL Commands Parameters
+TheOutgoingEnterpriseARCLcommandparametersallowyoutosettheEnterpriseManageruptoauto-
+maticallygenerateARCLcommandsatregularintervals.YoucansendoneormoreARCLcommands;to
+sendmultiplecommands,separateeachcommandwithapipecharacter(|).Forexample,settheOutGo-
+ingCommands1parameterto:
+Queueshowrobot default echoit
+QueueRobot: “Robot1” UnAvailable EStopPressed echoit
+QueueRobot: “Robot2” UnAvailable Interrupted echoit
+QueueRobot: “Robot3” UnAvailable InterruptedButNotYetIdle echoit
+QueueRobot: “Robot4” Available Available echoit
+QueueRobot: “Robot5” InProgress Driving echoit
+QueueRobot: “Robot6” UnAvailable NotUsingEnterpriseManager echoit
+QueueRobot: “Robot7” UnAvailable UnknownBatteryType echoit
+QueueRobot: “Robot8” UnAvailable ForcedDocked echoit
+QueueRobot: “Robot9” UnAvailable NotLocalized echoit
+QueueRobot: "patrolbot" UnAvailable Fault_Driving_Application_faultName echoit
+EndQueueShowRobot
+Thenyoucouldparsetheoutputtocomparethenumberofrobotsconnectedvs.howmanyrobotsshould
+beconnected,andgenerateanalarmifthereisamismatch.
+See Also...
+IntroductiontoARCLonpage25
+EnableOptionsin
+SetARCLParametersinMobilePlanneronpage30
+ConnecttoARCLUsingaTelnetClientonpage42
+UsingtheARCLCommandsonpage46
+ARCLCommandReferenceonpage70
+ARCLServerMessagesonpage299
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page41
+
+ConnecttoARCLUsingaTelnetClient
+Connect to ARCL Using a Telnet Client
+ThissectiontellsyouhowtoconnecttoyourmobilerobottoARCLusingaclient,suchasTelnetorPuTTY.
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page42
+
+SettingtheConnectionParameters
+Setting the Connection Parameters
+1. OpentheMobilePlannersoftware,version4.0orlater,andconnecttothemobilerobot.Refertothe
+AdeptMotivityUser'sGuidefordetailsoninstallingandstartingMobilePlanner.
+2. FromtheConfigurationtab,selecttheRobotInterfacetab.
+3. SelectARCLServerSetupfromtheSectionscolumn.TheARCLServerSetupparametersareshown
+inthefollowingfigure.
+ARCL ServerSetupParameters
+Theseparametersallowyoutocontroltheclient-serverconnection,seeUnderstandingtheCon-
+figurationParametersonpage37fordetails.
+4. EnterapasswordfortheTelnetclientforthePasswordparameter.Ifapasswordalreadyexists,
+makeanoteofitsothatyoucanopentheARCLserverfromtheTelnetconnection.
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page43
+
+ConnectingtoARCL
+Connecting to ARCL
+ThefollowinginstructionsdescribehowtoconnecttoARCLusingtheCommandPromptwindowinthe
+MicrosoftWindowsoperatingsystem.Youcanalsouseaterminal-emulationutility,suchasPuTTY.For
+detailsonPuTTY,seethePuTTY website:http://www.putty.org.
+1. OnaWindows-basedPC,opentheCommandPromptwindow.
+InWindows,holddownthe"Window"keyandthe"R"keytoopentheRundialogbox.Typecmdto
+displaythecommandterminal.)
+NOTE: OnsomeWindowsinstallations,youmayneedtoenableTelnetusing:
+ControlPanel>ProgramsandFeatures>TurnWindowsfeatureonoroff.
+2. StartTelnetusingtheARCLserveraddressandtheportnumberspecifiedintheARCLServerSetup
+Parameters.Forexample:
+Telnet 192.168.0.44 7171
+3. EnterthepasswordthatyousetinStep5,above.Ifyoumis-typethepassword,youwillhaveto
+restarttheTelnetclient.
+Afteryouhavesuccessfullylogged-in,theserverrespondswithalistofsupportedcommandsanda
+briefdescriptionofeach.Seetheexampleinthefollowingfigure.
+NOTE: Thelistofavailablecommandsdependsonyoursystemconfiguration.
+ExampleCommandListafterLogin
+4. Ifneeded,youcanentertheechooffcommandtopreventyourinputfromechoing(typingdouble
+characters).
+5. Whenyouarefinished,usethequitcommandtoproperlyclosetheconnection.
+AfteryouconnecttoARCL,youcanexecuteanyoftheARCLcommandsavailable.Foracompletelistof
+thedifferentARCLcommandsandtheirarguments,refertoARCLCommandReferenceonpage70.
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page44
+
+SeeAlso...
+ARCLsupportsmultipleclient/serverconnectionsthroughtheTCP/IPsocket.However,commandsand
+queryresponsesareconnection-specific.Forexample,youcanhavetwoTelnetclientsconnected;how-
+ever,onlytheonethatrequestedaoneLineStatusresponseactuallyreceivesthestatusmessage.
+See Also...
+IntroductiontoARCLonpage25
+EnableOptionsin
+SetARCLParametersinMobilePlanneronpage30
+ConnecttoARCLUsingaTelnetClientonpage42
+UsingtheARCLCommandsonpage46
+ARCLCommandReferenceonpage70
+ARCLServerMessagesonpage299
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page45
+
+UsingtheARCLCommands
+Using the ARCL Commands
+AfteryouhaveestablishedaconnectiontotheARCLserver,youarereadytooperateandmonitorthe
+mobilerobotusingtheARCLcommands.Thefollowingtopicsdiscusstheuseofthesecommandsforcer-
+taintasks.ToviewanalphabeticallistanddescriptionofeachARCLcommand,refertoARCLCommand
+Referenceonpage70.
+Thissectiondiscussesthefollowingtopics:
+SeeAlso... 46
+Understandingthe Commands 47
+DocumentConventions 47
+CommandNotes 48
+DataTypes 48
+StatusandErrorMessages 50
+StatusConditions 51
+UsingARCL Variables 55
+UsingTasksandMacros 56
+ForeverTasks 57
+UsingConfiguration Commands 58
+Usingthe QueuingCommands 60
+WorkingWith Payloads 61
+CreatingaMap 63
+TrackingSectors 64
+NavigatingandLocalizing 65
+UsingRange DevicesandCustom Sensors 66
+Monitoringthe I/OPorts 68
+TheARCLcommandsetisevolutionaryandbackwardcompatible.Toseeaddedcommands,consultthe
+ARCLhelplistwhenconnectingwithanewARAMversion.Formoredetailsonthehelpcommand,seehelp
+Commandonpage141.
+See Also...
+IntroductiontoARCLonpage25
+EnableOptionsin
+SetARCLParametersinMobilePlanneronpage30
+ConnecttoARCLUsingaTelnetClientonpage42
+UsingtheARCLCommandsonpage46
+ARCLCommandReferenceonpage70
+ARCLServerMessagesonpage299
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page46
+
+UnderstandingtheCommands
+Understanding the Commands
+Thissectiondescribesthedocumentconventions,commandnotes,andstatusanderrormessages.
+Thecommandsarediscussedbytaskinthischapter.Toviewcommandspresentedinalphabeticalorder,
+seetheARCLCommandReferenceonpage70.
+Document Conventions
+Commandname (shortcut: cn)
+Thecommandcanbeinvokedwithitsfullnameor,insomecases,withashortcut.Whenthereisashort-
+cut,itwillbelistedinparenthesesafterthecommandnameinthetitleofthecommanddescription.The
+syntax,usage,andparametersarethesame,whetherthefullcommandnameortheshortcutisused.
+Syntax
+TheARCLcommandsarenotcasesensitive.Inthisguide,commandsareshowninmixedcaseandbold
+type.Requiredparametersareshowninangledbracketsandregulartype;whereas,optionalparameters
+areshowninsquarebrackets[ ]andregulartype.Forexample:
+queuePickup<goalName>[priority][jobId]
+Inthisexample,the<goalName>parameterisrequired;the[priority]and[jobId]parametersare
+optional.
+goToRouteGoal<routeName><goalName>[index]
+Inthisexample,the<routeName>and<goalName>parametersarerequired;the[index]parameteris
+optional.
+Usage Considerations
+Thissectiondescribesanyspecialconsiderationsthatmustbefollowedwhenusingthecommand.Italso
+describeswherethecommandcanbeused,asfollows:
+ThisARCL commandisonlyavailableontherobot.
+l
+ThisARCL commandisavailableonlyontheEnterpriseManager.
+l
+ThisARCL commandisavailableontherobotandEnterpriseManager.
+l
+ARAMSettings
+ThissectionlistsanyARAMsettingsthatmustbeenabledtousethecommand.
+Parameters
+Thissectiondescribeseachoftherequiredandoptionalcommandparameters(suchasgoalname,rout-
+name,echo,etc.).
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page47
+
+CommandNotes
+Responses
+Thissectionshowstheinformationreturnedbythecommand.
+Details
+Thissectionprovidesmoredetailsaboutthefunctionsofthecommand.
+Examples
+Thissectionprovidesexamplesofcorrectly-formattedcommandlinesarepresentedinthissection.
+RelatedCommands
+Thissectionlistsadditionalcommandsthataresimilaroroftenusedwiththiscommand.
+Command Notes
+BelowaresomehelpfulnotestorememberwhenusingARCLcommands:
+ARCLrespondswiththecommand’ssyntaxifyouomitanyorallrequiredparameters.
+l
+Extraneousparametersareignored.
+l
+ARCLlimitscommandstoamaximumof5,000ASCIIcharacters
+l
+Asageneralrule,usedoublequotesforstringparameters,especiallyiftherearespacesinthe
+l
+string.
+MistypedTelnetcommandsandparameterscannotbeeditedonthecommandline.Youhaveto
+l
+completelyre-typethecommand.
+Mistypedornon-existentcommandsarerejectedwiththeresponse,“Unknowncommand".
+l
+Althoughcommandsarenotcase-sensitive,someparametersarecase-sensitive.
+l
+Data Types
+ThefollowingtableshowsalltheavailableARCLdatatypes(notallofthesemayapplytoaparticularcom-
+mand):
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page48
+
+| Parameter | DataType | MaxLength/Range |
+| --- | --- | --- |
+| cancelType | string | maxlength:127char-
+acters |
+| cancelValue | string | maxlength:127char-
+acters |
+| DROPOFFgoalName | string | maxlength:127char-
+acters |
+| DROPOFFpriority | integer(signedlong) | range:–2147483648to
+2147483647 |
+| echoString2 | string | maxlength:127char-
+acters |
+| goalName | string | maxlength:127char-
+acters |
+| jobId2 | string | maxlength:127char-
+acters |
+| payloadslotnumber | integer(signedlong) | range:1to
+2147483647 |
+| payloadslotstring1 | string | maxlength:127char-
+acters |
+| PICKUPgoalName | string | maxlength:127char-
+acters |
+| PICKUPpriority | integer(signedlong) | range:–2147483648to
+2147483647 |
+| priority | integer(signedlong) | range:–2147483648to
+2147483647 |
+| queryType | string | maxlength:127char-
+acters |
+| queryValue | string | maxlength:127char-
+acters |
+| reason2 | string | maxlength:127char-
+acters |
+| robotName1 | string | maxlength:127char-
+acters |
+| 1Theseparameterssupportspaces,andneedtobeenclosedinquotesifthey
+includespaces. |  |  |
+| 2Theseparametersdonotsupportspacesordoublequotes. |  |  |
+
+StatusandErrorMessages
+Status and Error Messages
+ARCLsendsimportantstatusupdatestotheconnectedclientforcertaincommands,suchasgoto
+goalName.Forexample,whenthemobilerobotfirststartstowardthegoal,thefollowingissenttothecli-
+ent:
+Going to goal goalName
+Whentherobotarrivesatthegoal,astatusupdateofthefollowingisdisplayed:
+Arrived at goal goalName
+IfARCLisunabletoexecutethecommandbecauseofacommandsequenceerror,anon-existentfile-
+name,orbecauseafeaturewasnotsetupproperly,aSetUpErrorisdisplayed.Forexample,ifyouattempt
+toexecutelistAddorlistExecutebeforeenteringthecommandlistStart,thefollowingerrorisdisplayed:
+SetUpError: You need to start a list before you can add to it.
+Allotherargumenterrorsresultinatwo-lineARCLresponse,withtwodistincterrormessages,suchasthe
+following:
+CommandError: goto dock12
+CommandErrorDescription: No goal 'dock12'
+Occasionally,ARCLsendsreportswithoutprompting,forexample,whentherearechangesintherobot’s
+dockingandchargingstatus.
+ARCLsendsimportantstatusupdatestotheconnectedclientforcertaincommands,suchas
+queuePickupgoalName.Forexample,whenthejobisfirstreceived,thenthefollowingissenttothecli-
+ent:
+queuepickup goal "<goalName>” with priority 10, id PICKUP138 and jobId JOB138
+successfully queued
+Whenthejobhasbeencompleted,thisupdatemessageissent:
+QueueUpdate: PICKUP138 JOB138 10 Completed None Goal "<goalName>" "robotName"
+04/08/2013 13:46:34 0
+IfARCLisunabletoexecutethecommandbecauseofacommandsequenceerror,anon-existentfile-
+name,orbecauseafeaturewasnotsetupproperly,aSetUpErrorisdisplayed.Forexample,ifyouattempt
+toexecutelistAddorlistExecutebeforeenteringthecommandlistStart,thefollowingerrorisdisplayed:
+SetUpError: You need to start a list before you can add to it.
+Allotherargumenterrorsresultinatwo-lineARCLresponse,withtwodistincterrormessages,suchasthe
+following:
+CommandError: queuePickup goal6
+CommandErrorDescription: queuePickup no such goal "goal6"
+ARCLsendsstatusupdatemessageswithoutprompting,forexample,whentherearechangesinarobot’s
+orajob'sstate.
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page50
+
+StatusConditions
+RefertoARCLServerMessagesonpage299foralistofunpromptedmessages.
+Status Conditions
+Thefollowingtableshowsthepossiblerobotandjobstatusconditions:
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page51
+
+| Status | Substatus |
+| --- | --- |
+| Pending | None |
+| Pending | AssignedRobotOffLine |
+| Pending | NoMatchingRobotForLinkedJob |
+| Pending | NoMatch-
+ingRobotForOtherSegment |
+| Pending | NoMatchingRobot |
+| Pending | ID_PICKUPxx<where
+PICKUPxxisthejobSegment
+IDforwhichthisJobSegment
+iswaiting> |
+| Pending | ID_DROPOFFxx<where
+DROPOFFxxisthejobSegment
+IDforwhichthisJobSegment
+iswaiting> |
+| Available | Available |
+| Available | Parking |
+| Available | Parked |
+| Available | DockParking |
+| Available | DockParked |
+| Interrupted | None |
+| InProgress | UnAllocated |
+| InProgress | Allocated |
+| InProgress | BeforePickup |
+| InProgress | BeforeDropoff |
+| InProgress | BeforeEvery |
+| InProgress | Before |
+| InProgress | Buffering |
+| InProgress | Buffered |
+| InProgress | Driving |
+| InProgress | After |
+| InProgress | AfterEvery |
+
+| Status | Substatus |
+| --- | --- |
+| InProgress | AfterPickup |
+| InProgress | AfterDropoff |
+| Completed | None |
+| Cancelling | None |
+| Cancelled | None |
+| Cancelling | <application_supplied_can-
+celReason_string> |
+| Cancelled | <application_supplied_can-
+celReason_string> |
+| BeforeModify | None |
+| Inter-
+ruptedByModify | None |
+| AfterModify | None |
+| UnAvailable | NotUsingEnterpriseManager |
+| UnAvailable | UnknownBatteryType |
+| UnAvailable | ForcedDocked |
+| UnAvailable | Lost |
+| UnAvailable | EStopPressed |
+| UnAvailable | Interrupted |
+| UnAvailable | InterruptedButNotYetIdle |
+| UnAvailable | Fault_Driving_Application_
+<application_supplied_string> |
+| UnAvailable | OutgoingARCLConnLost |
+| UnAvailable | Parking |
+| UnAvailable | DockParking |
+| UnAvailable | ModeIsLocked |
+
+StatusConditions
+UsingTasksandMacrosonpage56
+UsingConfigurationCommandsonpage58
+UsingtheQueuingCommandsonpage60
+WorkingWithPayloadsonpage61
+CreatingaMaponpage63
+TrackingSectorsonpage64
+NavigatingandLocalizingonpage65
+UsingRangeDevicesandCustomSensorsonpage66
+MonitoringtheI/OPortsonpage68
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page54
+
+| Variable | Description/Range ofValues |
+| --- | --- |
+| $g | Representsthecurrentgoalname.Forexample:Goingtogoal$g. |
+| $y | Representstheyear(2xxx) |
+| $m | Representsthemonth(1-12) |
+| $d | Representstheday(1-7) |
+| $H | Representsthehour(0-23) |
+| $M | Representstheminute(0-59) |
+| $S | Representsthesecond(0-59) |
+| $T | Representsthecurrentheading(Th)ofthemobilerobot(degrees) |
+| $X | RepresentsthecurrentXpositionofthemobilerobotinthemap(mm) |
+| $Y | RepresentsthecurrentY positionofthemobilerobotinthemap(mm) |
+
+UsingTasksandMacros
+Using Tasks and Macros
+ARCL’slistcommandsletyouassembleandexecuteasequenceoftasks,orexecutemacros.Thefollowing
+ARCLcommandsallowyoutocarryoutasingletask,createatasklist,orexecuteamacro:
+doTaskCommandonpage105
+doTaskInstantCommandonpage107
+executeMacroCommandonpage112
+getMacrosCommandonpage130
+listAddCommandonpage145
+listExecuteCommandonpage147
+listStartCommandonpage149
+playCommandonpage199
+sayCommandonpage261
+ARCLalsoallowsyoutocreateatasklist,addtaskstothelist,andthenexecutethetasklist.Indoingso,
+youcanmakeuseofthetasksthatareavailableintheMobilePlannersoftwareforbuildingroutesandmac-
+ros.Refertothelistcommandsfordetails.
+InitializealistfirstwiththelistStartcommand.Thisalsooverwritesalistthatyoumay’vealreadystarted,
+buthaveyettoexecute.UsethelistAddcommandwithatasknameasargumentandfollowedbyanyand
+alltaskargumentstoputataskintothecurrentlist.UselistExecutetoperformtheseriesoftasks,eachin
+orderfirstin,firstout.Thelistmaybeexecutedonlyonce,andyoumuststartwithlistStartbeforecre-
+atingandexecutinganewlistsequenceoftasks.
+HereisasimpleexamplethathastherobottraveltothegoalLobbyand,whenitgetsthere,saysitsname
+andthenasksforyourname.Theregulartextlinesarewhatyoumighttype;thelinesinquotesarethe
+messagesthattheARCLservergeneratesasyousenditcommandsanditcompletesitstasks:
+listStart
+“List being cleared”
+“Making new list”
+listAdd goto Lobby
+“Added task goto Lobby”
+listAdd say My name is PatrolBot.
+“Added task say My name is PatrolBot.”
+listAdd say What is your name?
+“Added task say What is your name?”
+listExecute
+“Executing list”
+“Successfully finished task list”
+TocarryoutasingletaskusethedoTaskcommand.Forexample:
+doTask goto goal_name
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page56
+
+ForeverTasks
+Forever Tasks
+ThereareafewtasksintheMobilePlannersoftwarethatendwiththequalifier"Forever".Thismeansthat
+thetaskcontinuesuntilexplicitlyinstructedtodosomethingelse.ThepatrolForevercommand,for
+example,causestherobottocontinuouslypatrolthespecifiedroute.Inotherwords,itkeepsrepeatingthe
+routeuntilitiscommandedtostop.
+Therefore,itisbesttoavoidusing"Forever"robottasksinatasklistorwiththedoTaskcommandinARCL.
+InsteadusethedockorpatrolARCLcommands,whichservethesamepurpose.Thedifferencesaresubtle,
+butthedockandpatrolcommandsaremoreappropriateforthejob.
+See Also...
+UnderstandingtheCommandsonpage47
+UsingARCLVariablesonpage55
+UsingTasksandMacrosonpage56
+UsingConfigurationCommandsonpage58
+UsingtheQueuingCommandsonpage60
+WorkingWithPayloadsonpage61
+CreatingaMaponpage63
+TrackingSectorsonpage64
+NavigatingandLocalizingonpage65
+UsingRangeDevicesandCustomSensorsonpage66
+MonitoringtheI/OPortsonpage68
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page57
+
+UsingConfigurationCommands
+Using Configuration Commands
+ARCLallowsyouchangethevalueofoneormoreARAMoperatingparameters.Forexample,youcantellit
+touseadifferentmaporchangeitstopspeedwhiledriving.Thefollowingconfigurationcommandsaresup-
+ported:
+configAddCommandonpage85
+configParseCommandonpage87
+configStartCommandonpage89
+getConfigSectionInfoCommandonpage117
+getConfigSectionListCommandonpage119
+getConfigSectionValuesCommandonpage121
+newConfigParamCommandonpage163
+newConfigSectionCommentCommandonpage165
+NOTE:YouhavetoexplicitlyenablethisfeatureinMobilePlannerbycheckingandapplyingtheArclCon-
+figparameterintheARCL serversetupsectionoftheConfiguration >RobotInterfacetab.For
+moreinformation,seeSetARCLParametersinMobilePlanneronpage30.Changesdonottakeeffect
+until:therobotisidleandstationary;theConfigurationchangesaresaved.
+UsetheconfigStartcommandtoinitializeaconfigurationlist,similartocreatingatasklist.TheconfigStart
+commandoverwritesanypreviouslist.UsetheconfigAddcommandtoentersectionsandrelatedcon-
+figurationparameterkeywordsandvaluestothelist.TheconfigParsecommandsendstheconfiguration
+parameterstoARAM,whichimplementstheconfigurationchanges.
+Whencreatingtheconfigurationlist,youmustfirstidentifywhichSectiontheconfigurationparameter(s)
+is/areassociated,andthenprovidetheparameter’skeywordandnewvalue.Configurationkeywordsare
+case-sensitive.Forexample,tochangetoadifferentmapontherobot:
+configStart
+New config starting
+configAdd Section Files
+Added 'Section Files' to the config
+configAdd Map theNewMap.map
+Added 'Map theNewMap.map' to the config
+configParse
+Will parse config
+Map changed
+Config parsed fine
+Noticethatthe"Mapchanged"responsewasnotgeneratedbyARCL,butratherisanARAMeventwarning
+thatissentautomaticallytoallattachedclients.SeeARCLServerMessagesonpage299fordetails.ARAM
+catchesandreportserrorsbothforconfigurationandsystemissues,forexampleifitisunabletofindafile
+orcorrectlyloadamapfile.
+ToviewARAMconfigurationdetailsandparametervalues,usetheARCLcommands:getConfigSectionList,
+getConfigSectionValues,andgetConfigSectionInfo.
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page58
+
+UsingConfigurationCommands
+YoucanalsocreateandmanagecustomconfigurationsectionsandparametersfromARCL.Thesenewsec-
+tionsandparametersaresavedintoadownloadedconfigurationfile.However,newsectionsandpara-
+metersdonotpersist,evenifrecentlyuploadedfromasavedconfigurationfile.Instead,youmustexecute
+thenewConfigParamcommandwheneverrestartingARAM.However,thelastvaluegiventothepara-
+meterpersists.
+See Also...
+UnderstandingtheCommandsonpage47
+UsingARCLVariablesonpage55
+UsingTasksandMacrosonpage56
+UsingConfigurationCommandsonpage58
+UsingtheQueuingCommandsonpage60
+WorkingWithPayloadsonpage61
+CreatingaMaponpage63
+TrackingSectorsonpage64
+NavigatingandLocalizingonpage65
+UsingRangeDevicesandCustomSensorsonpage66
+MonitoringtheI/OPortsonpage68
+'
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page59
+
+UsingtheQueuingCommands
+Using the Queuing Commands
+TheARCLqueuingcommandsareusedwiththeEnterpriseManager.Theyallowyoutorequestamobile
+robottodrivetoagoal(forexample,forapickup)andthendrivetoanothergoal(forexample,fora
+dropoff).
+queueCancelCommand(shortcut:qc)onpage209
+queueCancelCommand(shortcut:qc)onpage209
+queueDropoffCommand(shortcut:qd)onpage215
+queueModifyCommand(shortcut:qmod)onpage218
+queueModifyCommand(shortcut:qmod)onpage218
+queueMultiCommand(shortcut:qm)onpage229
+queuePickupCommand(shortcut:qp)onpage233
+queuePickupDropoffCommand(shortcut:qpd)onpage236
+queueQueryCommand(shortcut:qq)onpage241
+queueQueryCommand(shortcut:qq)onpage241
+queueShowCommand(shortcut:qs)onpage247
+queueShowCompletedCommand(shortcut:qsc)onpage249
+queueShowRobotCommand(shortcut: qsr)onpage251
+queueShowRobotCommand(shortcut: qsr)onpage251
+See Also...
+UnderstandingtheCommandsonpage47
+UsingARCLVariablesonpage55
+UsingTasksandMacrosonpage56
+UsingConfigurationCommandsonpage58
+UsingtheQueuingCommandsonpage60
+WorkingWithPayloadsonpage61
+CreatingaMaponpage63
+TrackingSectorsonpage64
+NavigatingandLocalizingonpage65
+UsingRangeDevicesandCustomSensorsonpage66
+MonitoringtheI/OPortsonpage68
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page60
+
+WorkingWithPayloads
+Working With Payloads
+UsingtheARCLpayloadcommands,youcanviewthenumberofslotsonarobot,assignnamestothose
+slotnumbers,definetheobject(orpayload)youwanttherobottopickupordropoff,seewhatobjectsthe
+robotiscarrying,andyoucanremovetheobject.
+UsingtheARCLpayloadcommands,youcanviewthenumberofslotsonarobotandseewhatobjectsthe
+robotiscarrying.
+Thefollowingcommandsaresupported:
+getPayload Commandonpage132
+payloadQueryCommand(shortcut:pq)onpage187
+payloadQueryCommand(shortcut:pq)onpage187
+payloadRemoveCommand(shortcut:pr)onpage192
+payloadSetCommand(shortcut:ps)onpage194
+payloadSlotCountCommand(shortcut:psc)onpage196
+payloadSlotCountLocalCommand(shortcut:pscl)onpage198
+setPayloadCommandonpage272
+Slotsrepresentcontainerswheretheobjects(payload)arecarriedontopoftherobot.Youcanassigna
+nametotheslotnumbersthatrepresentstheobjecttherobotistocarryfromonegoaltothenext.Inthe
+examplebelow,slot1iscarrying"Books".
+payloadSet 1 Books
+Toconfigurethenumberofslotsonarobot,inthecustomargumentssectionontherobotadd:
+-payloadSlotsxx
+Thedefaultnumberofslotsis4.Notethatslotnumberingstartsat1.Thereisnoslot0;thatwouldindic-
+atethereisnopayload.
+See Also...
+UnderstandingtheCommandsonpage47
+UsingARCLVariablesonpage55
+UsingTasksandMacrosonpage56
+UsingConfigurationCommandsonpage58
+UsingtheQueuingCommandsonpage60
+WorkingWithPayloadsonpage61
+CreatingaMaponpage63
+TrackingSectorsonpage64
+NavigatingandLocalizingonpage65
+UsingRangeDevicesandCustomSensorsonpage66
+MonitoringtheI/OPortsonpage68
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page61
+
+WorkingWithPayloads
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page62
+
+CreatingaMap
+Creating a Map
+ARCLallowsyoutostartandstopcreatingamapscan,aswellasaddcustommarkerstothemapwhilecre-
+atingthescan.Thesemarkerscanbesensorreadingsorotherdata.
+YoumustenabletheArclScansettingintheARCL serversetupsectionoftheConfiguration >Robot
+InterfacetabintheMobilePlannersoftware.
+Onceenabled,thefollowingcommandsaresupported:
+scanAddGoalCommandonpage262
+scanAddInfoCommandonpage264
+scanAddTagCommandonpage267
+scanStartCommandonpage269
+scanStopCommandonpage271
+Fordetailsonthesecommands,refertotheARCLCommandReferenceonpage70.
+TostartamapscanusingscanStart,provideanamestringforthe2dscanfilethatgetscreated.Noargu-
+mentisneededforthescanStopcommand,sinceonlyonescanmaybeactiveatatime.Also,providea
+nameandoptionaldescription(inthatorder)withthescanAddGoalcommand,toplaceagoalinthemap.
+Formoredetails,seescanStartCommandonpage269,scanStopCommandonpage271andscanAddGoal
+Commandonpage262.
+ThescanAddInfoandscanAddTagcommandsidentifycustomobjectsandthenlocatemarkersforthemin
+themap.Tousethese:
+DefinethecustomobjectswiththescanAddInfocommand.Fordetails,seescanAddInfoCommand
+l
+onpage264.
+AddmarkerswhilescanningatpositionsthroughoutthemapwiththescanAddTagcommand.For
+l
+details,seescanAddTagCommandonpage267.
+See Also...
+UnderstandingtheCommandsonpage47
+UsingARCLVariablesonpage55
+UsingTasksandMacrosonpage56
+UsingConfigurationCommandsonpage58
+UsingtheQueuingCommandsonpage60
+WorkingWithPayloadsonpage61
+CreatingaMaponpage63
+TrackingSectorsonpage64
+NavigatingandLocalizingonpage65
+UsingRangeDevicesandCustomSensorsonpage66
+MonitoringtheI/OPortsonpage68
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page63
+
+TrackingSectors
+Tracking Sectors
+SectorsaredesignatedareasinthemapwhichcantriggercertainMotivitytasks,simplemessagingor
+alternativemobilebehaviors.Forexample,aspeedsector-enabledrobot(setinSetNetGowiththe
+enableSpeedSectorsstartupparameter)canadoptthedefinedspeedlimitforaSlowSectorwheneveritis
+locatedwithintheboundsofanyofthatspeedsector’stypeinthemap.Youcanalsoaddyourownsectors
+tothemap,withacustomdefinition,eitheraddedmanuallyorusingthescanAddInfocommand.Thenuse
+MobilePlannertodefineregionsinthemapforyoursectors.
+EnableARAMtrackingforeachofthesectorsthroughSetNetGo.Onceenabled,ARCLsupportsseveralcom-
+mandsthatreportwhichsectorsyourMotivityplatformisinbasedonpoints,goalsandpaths:
+trackSectorsCommandonpage279
+trackSectorsAtGoalCommandonpage282
+trackSectorsAtPointCommandonpage285
+trackSectorsPathCommandonpage288
+Theresponsetoallcommandsisalistofthepertinentsectors:
+TrackSectors: <SectorType> <Sector name, if designated in the map>
+...
+End of TrackSectors
+See Also...
+UnderstandingtheCommandsonpage47
+UsingARCLVariablesonpage55
+UsingTasksandMacrosonpage56
+UsingConfigurationCommandsonpage58
+UsingtheQueuingCommandsonpage60
+WorkingWithPayloadsonpage61
+CreatingaMaponpage63
+TrackingSectorsonpage64
+NavigatingandLocalizingonpage65
+UsingRangeDevicesandCustomSensorsonpage66
+MonitoringtheI/OPortsonpage68
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page64
+
+NavigatingandLocalizing
+Navigating and Localizing
+ThefollowingARCLcommandsareavailablefornavigatingandlocalizingtherobot.
+distanceBetweenCommandonpage100
+distanceFromHereCommandonpage102
+followCommandonpage116
+etaRequestCommandonpage111
+localizeToPointCommandonpage151
+getGoalsCommandonpage124
+gotoCommandonpage135
+gotoPointCommandonpage137
+gotoRouteGoalCommandonpage139
+patrolCommandonpage177
+patrolOnceCommandonpage179
+See Also...
+UnderstandingtheCommandsonpage47
+UsingARCLVariablesonpage55
+UsingTasksandMacrosonpage56
+UsingConfigurationCommandsonpage58
+UsingtheQueuingCommandsonpage60
+WorkingWithPayloadsonpage61
+CreatingaMaponpage63
+TrackingSectorsonpage64
+NavigatingandLocalizingonpage65
+UsingRangeDevicesandCustomSensorsonpage66
+MonitoringtheI/OPortsonpage68
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page65
+
+UsingRangeDevicesandCustomSensors
+Using Range Devices and Custom Sensors
+ARAMusesrange-devicereadings,bothrealandvirtual,toplanaglobalpathandtodetectobstaclesalong
+thewaysothatitcanrecalculatealocalpathplanifneeded.Rangedevicesincludelaser-rangefinders,
+SONAR,forbiddenlinesandareas,single-robotsectors,andmanyothers.Thefollowingcommandsaresup-
+portedinARCLforusingrangedevicesandcustomsensors:
+customReadingAddCommandonpage96
+customReadingAddAbsoluteCommandonpage94
+customReadingsClearCommandonpage98
+rangeDeviceGetCumulativeCommandonpage255
+rangeDeviceGetCurrentCommandonpage257
+rangeDeviceListCommandonpage259
+YoucanusetheARCLcommandrangeDeviceList,toretrievealistfromthemobilerobot.Likesingle-robot
+sectorsandforbiddenspaces,somerangingsensorsarelocationdependentinthattheirpositioninthe
+mapisfixed.Otherrangingdata,likefromSONAR,aretransientandindependentofwheretheMotivity
+platformisonthemap.
+TherangeDeviceGetCurrentcommandretrievesaseriesofabsoluteXandYmapcoordinatesinmil-
+limetersrelatedtotherangedevice’sactivereflectionsoffanobstacleorrelativetothepositionoftheplat-
+form( inrelationtothevirtualsensor).TherangeDeviceGetCumulativecommandrespondswiththe
+absoluteXandYmapcoordinatesofpersistentreadingsthatARAMtracksforavoidancewhileplanninga
+localpath.
+YoucaninfluencelocalpathplanningandobstacleavoidancewithcustomsensorsthroughARCL.Youdo
+thisbyenablingcustomstartupargumentsinSetNetGo,refertofordetails.Yourapplicationsoftwarethen
+tellsARAMofthecustomreadingsfromthedevice,oneatatime.UsecustomReadingAddforrobot-local
+coordinatesrelativetothecenteroftheplatform,thisisusefulforrealrangingdevicesonboard.Usecus-
+tomReadingAbsoluteAddformap-absolutecoordinates,whichisusefulforlocation-dependentvirtual
+areas.ThecustomReadingClearcommandremovesalloftheparticularcustomdevice’srangingdatafrom
+ARAMifithadn’talreadyexpired.
+EnableacustomglobalplanningsensorinordertoinfluenceARAM’sglobalpathplanner.Forexample,you
+cancreateacustomdoorglobalsensorwhich,atcertaintimessetbyyourapplication,is“closed”bycus-
+tomReadAdddata.Onceset,ARAMwillnotplanaglobalpaththroughthecloseddoorandwilltreatitasan
+obstaclewhiledrivingpast.
+See Also...
+UnderstandingtheCommandsonpage47
+UsingARCLVariablesonpage55
+UsingTasksandMacrosonpage56
+UsingConfigurationCommandsonpage58
+UsingtheQueuingCommandsonpage60
+WorkingWithPayloadsonpage61
+CreatingaMaponpage63
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page66
+
+UsingRangeDevicesandCustomSensors
+TrackingSectorsonpage64
+NavigatingandLocalizingonpage65
+UsingRangeDevicesandCustomSensorsonpage66
+MonitoringtheI/OPortsonpage68
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page67
+
+MonitoringtheI/OPorts
+Monitoring the I/O Ports
+Ifyourhardwareandsoftwaresupportsexternalconnections,youcanenableordisabletheportsforARCL
+controlinSetNetGo.
+Warning!DonotattempttoconnectI/O portsifyoursystemdidnotcomewiththem.Ifoneormore
+I/Oportsareincorrectlyassignedorinadvertentlytriggered,therobotoritssystemscanbephysically
+damaged.ContactAdepttechnicalsupportformoreinformation.
+YoucancontrolandmonitortheI/OportswiththefollowingARCLinputandoutputcommands:
+analogInputListCommandonpage74
+analogInputQueryRawCommandonpage75
+analogInputQueryVoltageCommandonpage76
+inputListCommandonpage142
+inputQueryCommandonpage144
+outputListCommandonpage171
+outputOffCommandonpage173
+outputOnCommandonpage174
+outputQueryCommandonpage175
+Thefollowingexamplesshowhowinputsandoutputscanbelistedandqueried,andhowoutputscanbe
+turnedon/off:
+inputList
+digin1
+End of inputList
+inputQuery digin1
+Input: digin1 off
+outputList digout1 digout2
+End of outputList
+outputQuery digout1
+Output: digout1 off
+outputOn digout1
+Output: digout1 on
+outputOff digout1
+Output: digout1 off
+See Also...
+UnderstandingtheCommandsonpage47
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page68
+
+MonitoringtheI/OPorts
+UsingARCLVariablesonpage55
+UsingTasksandMacrosonpage56
+UsingConfigurationCommandsonpage58
+UsingtheQueuingCommandsonpage60
+WorkingWithPayloadsonpage61
+CreatingaMaponpage63
+TrackingSectorsonpage64
+NavigatingandLocalizingonpage65
+UsingRangeDevicesandCustomSensorsonpage66
+MonitoringtheI/OPortsonpage68
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page69
+
+ARCL Command Reference
+ThissectionprovidesadescriptionofeachcommandintheARCLcommandset.Thecommanddescrip-
+tionsareprovidedinalphabeticalorder.
+analogInputListCommand 74
+analogInputQueryRaw Command 75
+analogInputQueryVoltage Command 76
+applicationFaultClear Command 77
+applicationFaultQuery Command 79
+applicationFaultSetCommand 81
+arclSendTextCommand 83
+clearAllObstaclesCommand 84
+configAddCommand 85
+configParse Command 87
+configStartCommand 89
+connectOutgoingCommand 91
+createInfoCommand 92
+customReadingAddAbsolute Command 94
+customReadingAddCommand 96
+customReadingsClear Command 98
+distanceBetween Command 100
+distanceFromHere Command 102
+dockCommand 104
+doTaskCommand 105
+doTaskInstantCommand 107
+echoCommand 109
+enableMotorsCommand 110
+etaRequestCommand 111
+executeMacroCommand 112
+faultsGetCommand 114
+follow Command 116
+getConfigSectionInfoCommand 117
+getConfigSectionListCommand 119
+getConfigSectionValuesCommand 121
+getDateTime Command 123
+getGoalsCommand 124
+getInfoCommand 126
+getInfoListCommand 128
+AdeptARCLReferenceGuide,Updated:2/19/2016
+Page70

@@ -40,9 +40,11 @@ class APIClient<TPrompt extends Record<string, unknown>, TResponse extends Recor
 export async function messagePromptFlow(message: string, { id, summary }: Chat) {
     //await new Promise((resolve) => setTimeout(resolve, 5000));
 
+
     const prompt = PromptSchema.parse({ text: message, previous_summary: summary ?? "" } satisfies Prompt);
     const answerPromise = api.prompt(prompt);
     const addMessagePromise = addMessageToChat({ message: message.replace(" USE SIMPLE AND CONCISE LANGUAGE", ""), ai: false, timestamp: Date.now(), chatId: id });
+
     //const answerPromise = new Promise<AIResponse>((resolve) => resolve({ sources: [], summary: summary ?? "", reply: "This is a test response" }));
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars

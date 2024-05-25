@@ -1,0 +1,9 @@
+services:
+  web:
+    build: ./Frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - VITE_API_URL="backend:5000"
+  backend:
+    build: ./Server
