@@ -1,5 +1,5 @@
 import { ActionFunctionArgs, LoaderFunctionArgs, MetaArgs } from "@remix-run/node";
-import { ScrollRestoration, redirect, useLoaderData } from "@remix-run/react";
+import { redirect, useLoaderData } from "@remix-run/react";
 import { useContext, useEffect, useRef } from "react";
 import { messagePromptFlow } from "~/.server/api";
 import { getChatById } from "~/.server/chats";
@@ -66,7 +66,6 @@ export default function ChatInner() {
                 {chat?.messages.length === 0 && !isFetching && <InitialGreeting className={"flex flex-col items-center justify-center h-full gap-5 grow w-full"} />}
             </div>
             <span id="end" ref={end}></span>
-            <ScrollRestoration />
         </ChatBox>
     )
 }
