@@ -1,5 +1,5 @@
 import fs from "fs";
-import { transcripeAudio, uploadAudio } from "./assamblyai";
+import { transcripeAudio, uploadAudio } from "./assemblyai";
 export async function handleAudioPost(formData: FormData) {
     if (!formData.has("audio")) return;
     const blob = formData.get("audio");
