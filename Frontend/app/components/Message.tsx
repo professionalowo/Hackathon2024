@@ -50,20 +50,5 @@ export function Message({ message: { message, ai, timestamp, chatId, id } }: { m
                     </div>
                 </div>)}
         </motion.div>
-        {isAi && (<motion.div
-            transition={{ type: "spring", damping: 10, stiffness: 120 }}
-            initial={{ x: (ai ? -100 : 100) }}
-            animate={{ x: 0 }}
-            className="flex flex-row text-sm p-2 text-center w-fit gap-2">
-            <p className="self-center">From:</p>
-            <div className="flex rounded-3xl gap-1">
-                <div className="flex flex-row p-1 px-2 rounded-3xl bg-tertiary">
-                    <p>Page 123</p>
-                </div>
-                <div className="flex flex-row p-1 px-2 rounded-3xl bg-tertiary">
-                    <p>Page 123</p>
-                </div>
-            </div>
-        </motion.div>)}
     </div>
 }

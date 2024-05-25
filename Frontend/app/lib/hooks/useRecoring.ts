@@ -5,7 +5,6 @@ const useRecording = (isMicOpen: boolean) => {
     const [recorded, setRecorded] = useState<Blob[]>([]);
     const { media } = useMicrophone(isMicOpen);
     const [recorder, setRecorder] = useState<MediaRecorder | null>(null);
-    //const options = { mimeType: "audio/mpeg" } as const;
     useEffect(() => {
         if (media) {
             const recorder = new MediaRecorder(media);
