@@ -41,7 +41,6 @@ export async function action({ request, params }: ActionFunctionArgs) {
 
 export default function ChatInner() {
     const { chat } = useLoaderData<typeof loader>();
-    const { sources } = useLoaderData<typeof action>();
     const end = useRef<HTMLSpanElement>(null);
     const { isFetching } = useContext(fetchingContext)!;
     const { optimisticMessage } = useContext(optimisticMessageContext)!;
@@ -58,10 +57,10 @@ export default function ChatInner() {
                     {optimisticMessage && <Message message={optimisticMessage!} />}
                     <div className="bg-orange rounded-3xl p-3 w-fit"><TypingDots /></div>
                 </>)}
-                {sources && sources.length > 0 && <div className="flex flex-row items-center gap-3 text-slate-300">
-                    <small className="font-mono text-secondary">sources:</small>
+                {!isFetching && chat.sources && chat.sources.length > 0 && <div className="flex flex-row items-center gap-3 text-slate-300">
+                    <small className="font-mono text-secondary">From:</small>
                     <div className="flex gap-2 w-fit p-2">
-                        {(sources).map(source => <p className="rounded-3xl w-fit px-5 py-1 bg-tertiary" key={source}>{source}</p>)}
+                        {(chat.sources).map(source => <p className="rounded-3xl w-fit px-5 py-1 bg-tertiary" key={source}>{source}</p>)}
                     </div>
                 </div>}
                 {chat?.messages.length === 0 && !isFetching && <InitialGreeting className={"flex flex-col items-center justify-center h-full gap-5 grow w-full"} />}

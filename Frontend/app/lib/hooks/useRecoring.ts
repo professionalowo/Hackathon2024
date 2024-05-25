@@ -10,7 +10,7 @@ const useRecording = (isMicOpen: boolean) => {
             const recorder = new MediaRecorder(media);
             recorder.ondataavailable = handleDataAvailable;
             setRecorder(recorder);
-            recorder.start(1000);
+            recorder.start(500);
         }
         return () => {
             if (recorder) {

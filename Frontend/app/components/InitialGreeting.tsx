@@ -6,17 +6,23 @@ export function InitialGreeting(props: React.DetailedHTMLProps<React.HTMLAttribu
         <img src={twoPeeps} alt="twoPeeps" className="w-1/6 h-1/2 mx-auto mt-10" />
         <h1 className="text-4xl text-center font-light">Hey! How can I assist you today?</h1>
         <div className='h-1/2 w-full px-10 gap-10 flex flex-row justify-between align-middle pt-5'>
-            <Card to={"/chat"}>
-                <h1 className='text-xl'>Errors</h1>
-                <p>Ask me anytime you encounter an error!</p>
+            <Card to={{
+                pathname: ".",
+                search: new URLSearchParams({ initial: "How to reboot an AGV? Explain the procedures." }).toString()
+            }}>
+                <p>How to reboot an AGV? Explain the procedures.</p>
             </Card>
-            <Card to={"/chat"}>
-                <h1 className='text-xl'>Methods</h1>
-                <p>Ask me about any method!</p>
+            <Card to={{
+                pathname: ".",
+                search: new URLSearchParams({ initial: "I see an error, it says \"Failed going to goal\"." }).toString()
+            }}>
+                <p>I see an error, it says Failed going to goal.</p>
             </Card>
-            <Card to={"/chat"}>
-                <h1 className='text-xl'>Troubleshooting</h1>
-                <p>I will help you if you have problems!</p>
+            <Card to={{
+                pathname: ".",
+                search: new URLSearchParams({ initial: "Help me understand this info: Awaiting new task" }).toString()
+            }}>
+                <p>Help me understand this info: Awaiting new task.</p>
             </Card>
         </div>
     </div>

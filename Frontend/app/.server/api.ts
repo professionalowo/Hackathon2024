@@ -1,4 +1,4 @@
-import { addMessageToChat, updateChatSummary } from "./chats";
+import { addMessageToChat, updateChatSources, updateChatSummary } from "./chats";
 import { Chat } from "./db/schema";
 import { z } from "zod";
 type APIClientProps = { baseUrl: `/${string}`, secure?: boolean };
@@ -49,8 +49,9 @@ export async function messagePromptFlow(message: string, { id, summary }: Chat) 
     const [messageInserted, answer] = await Promise.all([addMessagePromise, answerPromise]);
     const addAiMessagePromise = addMessageToChat({ message: answer.reply, ai: true, timestamp: Date.now(), chatId: id });
     const updateChatPromise = updateChatSummary(id, answer.summary ?? "");
+    const updateChatSourcesPromise = updateChatSources(id, answer.sources ?? []);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [aiMessage, updatedChat] = await Promise.all([addAiMessagePromise, updateChatPromise]);
+    const [aiMessage, updatedChat, updatedSources] = await Promise.all([addAiMessagePromise, updateChatPromise, updateChatSourcesPromise]);
     return answer;
 }
 

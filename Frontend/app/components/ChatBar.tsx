@@ -1,4 +1,4 @@
-import { useFetcher } from "@remix-run/react"
+import { useFetcher, useSearchParams } from "@remix-run/react"
 import { useContext, useEffect, useState } from "react";
 import mic from "../assets/mic-fill.svg?url";
 import micMute from "../assets/mic-mute-fill.svg?url";
@@ -9,13 +9,18 @@ import { useRecording } from "~/lib/hooks/useRecoring";
 export function ChatBar() {
     const fetcher = useFetcher();
     const [expert, setExpert] = useState<boolean>(false);
-
-    const [text, setText] = useState<string>("");
+    const [searchParams, setSearchParams] = useSearchParams();
+    const [text, setText] = useState<string>(searchParams.get("initial") ?? "");
     const [isMicOpen, setIsMicOpen] = useState(false);
     const { setIsFetching } = useContext(fetchingContext)!;
     const { setOptimisticMessage } = useContext(optimisticMessageContext)!;
     const { data } = useRecording(isMicOpen);
     const isSubmitting = fetcher.state === "submitting";
+    useEffect(() => {
+        if (searchParams.get("initial")) {
+            setText(searchParams.get("initial")!);
+        }
+    }, [searchParams])
     useEffect(() => {
         setIsFetching(isSubmitting);
     }, [isSubmitting, setIsFetching])
@@ -40,7 +45,12 @@ export function ChatBar() {
             <label htmlFor="switch">Toggle</label>
         </div>
         <fetcher.Form className="flex flex-row w-full justify-center gap-3" method="post" autoComplete="off" onSubmit={() => {
-            setOptimisticMessage({ id: -1, message: text, ai: false, timestamp: Date.now(), chatId: 0 });
+            if (!searchParams.get("initial"))
+                setOptimisticMessage({ id: -1, message: text, ai: false, timestamp: Date.now(), chatId: 0 });
+            setSearchParams(prev => {
+                prev.delete("initial");
+                return prev;
+            })
             setText("");
         }}>
             <div className="flex flex-row bg-tertiary text-slate-100 rounded-3xl px-4 py-3 w-1/2 text-xl animation">
